@@ -2633,7 +2633,7 @@ function updateBsStepComparison() {
       savEl.textContent = diff > 0.01
         ? `💚 Save €${diff.toFixed(2)}/repair · €${Math.round(annual).toLocaleString('nl-NL')}/year`
         : diff < -0.01
-        ? `⚠ €${Math.abs(diff).toFixed(2)} more than EMM`
+        ? `⚠ €${Math.abs(diff).toFixed(2)} no positive cost deviation`
         : `≈ Same as EMM`;
     } else {
       savEl.style.display = 'none';
