@@ -204,6 +204,21 @@ function runModeA(input) {
   results.savings_type = results.utilisation >= thresholds.savings_type_threshold
     ? 'Cost saving' : 'Capacity gain';
 
+    // Mode A savings range — conservative (1.1) to optimistic (1.3)
+const _ct  = r.current_cycle_time_per_repair;
+const _lf  = r.labour_fraction;
+const _vol = results.actual_repairs_completed;
+const _lc  = r.labour_cost_per_hour;
+
+results.savings_range = {
+  low:  Math.round((_ct - _ct / 1.1) * _lf * _vol * _lc),
+  mid:  Math.round((_ct - _ct / 1.2) * _lf * _vol * _lc),
+  high: Math.round((_ct - _ct / 1.3) * _lf * _vol * _lc),
+  factor_low:  1.1,
+  factor_high: 1.3,
+  note: 'Mode A estimate — range based on 10%–30% process improvement scenarios',
+};
+
   if (results.deviation_pct !== undefined) {
     results.consumption_scenario =
       results.deviation_pct > 0 ? 'Consumption-heavy' : 'Efficient';
