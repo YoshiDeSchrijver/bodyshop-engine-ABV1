@@ -616,6 +616,9 @@ footer {
 }
 footer strong { color:rgba(255,255,255,.75); }
 
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
 @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 .page.active .card,
 .page.active .kpi,
@@ -1007,6 +1010,226 @@ footer strong { color:rgba(255,255,255,.75); }
   border-top:1px solid var(--border);
 }
 
+
+/* ═══════════════════════════════════════════════
+   ROLE SELECTOR
+═══════════════════════════════════════════════ */
+.role-selector { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.role-card { background:var(--white); border:2px solid var(--border); border-radius:4px; padding:16px 18px; display:flex; align-items:center; gap:14px; cursor:pointer; transition:border-color .15s, box-shadow .15s; }
+.role-card:hover { border-color:var(--ppg); box-shadow:0 0 0 3px var(--ppg-light); }
+.role-card.selected { border-color:var(--ppg); background:var(--ppg-pale); box-shadow:0 0 0 3px var(--ppg-light); }
+.role-card-icon { font-size:28px; flex-shrink:0; line-height:1; }
+.role-card-body { flex:1; }
+.role-card-title { font-size:14px; font-weight:700; color:var(--ppg-deep); margin-bottom:3px; }
+.role-card-desc  { font-size:12px; color:var(--muted); line-height:1.4; }
+.role-check { width:22px; height:22px; border-radius:50%; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:transparent; flex-shrink:0; transition:all .15s; }
+.role-card.selected .role-check { background:var(--ppg); border-color:var(--ppg); color:white; }
+
+/* ═══════════════════════════════════════════════
+   BODYSHOP STEP 3 — 9-STEP WORKFLOW
+═══════════════════════════════════════════════ */
+.bs-workflow-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:20px; }
+.bs-workflow-card { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:0; box-shadow:var(--shadow); border-top:4px solid var(--ppg); overflow:hidden; transition:box-shadow .15s; }
+.bs-workflow-card:hover { box-shadow:var(--shadow-md); }
+.bs-wf-head { padding:14px 14px 10px; display:flex; align-items:center; gap:10px; }
+.bs-wf-num  { width:24px; height:24px; border-radius:50%; background:var(--ppg); color:white; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.bs-wf-name { font-size:13px; font-weight:700; color:var(--ppg-deep); flex:1; }
+.bs-wf-icon { font-size:18px; }
+.bs-wf-time { padding:0 14px 8px; display:flex; align-items:center; gap:8px; }
+.bs-wf-time-val { font-size:20px; font-weight:700; color:var(--ppg-deep); }
+.bs-wf-time-unit{ font-size:11px; color:var(--muted); }
+.bs-wf-time-range{ font-size:10px; color:var(--muted); background:var(--ppg-pale); padding:2px 6px; border-radius:99px; }
+.bs-wf-bar { height:3px; background:var(--border); margin:0 14px 10px; border-radius:99px; overflow:hidden; }
+.bs-wf-bar-fill { height:100%; border-radius:99px; }
+.bs-wf-modules { padding:0 14px 10px; display:flex; flex-wrap:wrap; gap:4px; }
+.bs-wf-module { font-size:9px; font-weight:700; color:var(--ppg); background:var(--ppg-light); padding:2px 6px; border-radius:2px; }
+.bs-wf-products { border-top:1px solid var(--border); background:var(--ppg-pale); }
+.bs-wf-prod-toggle { width:100%; background:none; border:none; cursor:pointer; font-family:'Source Sans 3',sans-serif; font-size:11px; font-weight:700; color:var(--ppg); padding:8px 14px; text-align:left; display:flex; align-items:center; justify-content:space-between; }
+.bs-wf-prod-list { display:none; padding:4px 14px 10px; }
+.bs-wf-prod-list.open { display:block; }
+.bs-wf-prod-item { font-size:11px; color:var(--text); padding:4px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.bs-wf-prod-item:last-child { border-bottom:none; }
+.bs-wf-prod-brand { font-size:9px; color:var(--ppg); font-weight:700; background:var(--ppg-light); padding:1px 5px; border-radius:2px; flex-shrink:0; }
+.bs-wf-prod-cost  { font-size:11px; font-weight:700; color:var(--ppg); flex-shrink:0; }
+
+/* override indicator */
+.bs-override-badge { font-size:9px; font-weight:700; background:#e8f5e9; color:#2e7d32; padding:1px 5px; border-radius:2px; }
+.bs-bench-badge    { font-size:9px; font-weight:700; background:#fff8e1; color:#f57f17; padding:1px 5px; border-radius:2px; }
+
+/* ═══════════════════════════════════════════════
+   BODYSHOP STEP 4 — SIMPLIFIED RESULTS
+═══════════════════════════════════════════════ */
+.bs-result-hero { background:var(--ppg-deep); border-radius:4px; padding:28px 28px 24px; margin-bottom:20px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; align-items:center; }
+.bs-result-eye { font-size:10px; font-weight:700; color:rgba(255,255,255,.5); text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px; }
+.bs-result-savings { font-size:42px; font-weight:700; color:white; line-height:1; margin-bottom:4px; }
+.bs-result-savings-sub { font-size:13px; color:rgba(255,255,255,.6); }
+.bs-result-stat { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:3px; padding:16px 18px; text-align:center; }
+.bs-result-stat-val { font-size:26px; font-weight:700; color:white; line-height:1; margin-bottom:4px; }
+.bs-result-stat-label { font-size:11px; color:rgba(255,255,255,.55); }
+.bs-insight-cards { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; } /* 5th card spans full width via JS */
+.bs-insight { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:18px; box-shadow:var(--shadow); display:flex; gap:14px; align-items:flex-start; }
+.bs-insight-icon  { font-size:24px; flex-shrink:0; margin-top:2px; }
+.bs-insight-title { font-size:13px; font-weight:700; color:var(--ppg-deep); margin-bottom:4px; }
+.bs-insight-text  { font-size:12px; color:var(--muted); line-height:1.5; }
+.bs-insight-val   { font-size:18px; font-weight:700; color:var(--ppg); margin-top:6px; }
+.bs-cost-breakdown { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:18px; box-shadow:var(--shadow); margin-bottom:20px; }
+.bs-cost-title { font-size:13px; font-weight:700; color:var(--ppg-deep); margin-bottom:14px; }
+.bs-cost-row   { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.bs-cost-dot   { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
+.bs-cost-name  { font-size:12px; color:var(--text); width:160px; flex-shrink:0; }
+.bs-cost-track { flex:1; height:8px; background:var(--border); border-radius:99px; overflow:hidden; }
+.bs-cost-fill  { height:100%; border-radius:99px; }
+.bs-cost-eur   { font-size:12px; font-weight:700; color:var(--ppg-deep); width:44px; text-align:right; }
+
+/* ═══════════════════════════════════════════════
+   BODYSHOP STEP 5 — CTA FORK
+═══════════════════════════════════════════════ */
+.bs-cta-wrap { max-width:680px; margin:0 auto; }
+.bs-summary-bar { background:var(--ppg-deep); color:white; border-radius:3px; padding:16px 20px; display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin-bottom:20px; }
+.bs-sum-item  { text-align:center; }
+.bs-sum-label { font-size:10px; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:.05em; margin-bottom:2px; }
+.bs-sum-val   { font-size:20px; font-weight:700; color:white; }
+.bs-sum-val.green { color:#81c784; }
+.bs-sum-div   { width:1px; height:40px; background:rgba(255,255,255,.15); }
+.bs-cta-cards { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px; }
+.bs-cta-card  { background:var(--white); border:2px solid var(--border); border-radius:4px; padding:24px; display:flex; flex-direction:column; gap:12px; box-shadow:var(--shadow); transition:border-color .15s, box-shadow .15s; }
+.bs-cta-card:hover { border-color:var(--ppg); box-shadow:var(--shadow-md); }
+.bs-cta-card.primary { border-color:var(--ppg); background:var(--ppg-pale); }
+.bs-cta-card-icon  { font-size:32px; line-height:1; }
+.bs-cta-card-title { font-size:16px; font-weight:700; color:var(--ppg-deep); }
+.bs-cta-card-desc  { font-size:12px; color:var(--muted); line-height:1.6; flex:1; }
+.bs-or-divider { display:flex; align-items:center; gap:12px; margin:4px 0; }
+.bs-or-divider::before, .bs-or-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+.bs-or-text { font-size:11px; color:var(--muted); font-weight:600; }
+
+/* ═══════════════════════════════════════════════
+   ADVANCED PER-STEP OVERRIDES
+═══════════════════════════════════════════════ */
+.step-override-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+.step-override-row  { display:flex; flex-direction:column; gap:3px; }
+.step-override-label{ font-size:11px; font-weight:700; color:var(--ppg-deep); display:flex; align-items:center; gap:4px; }
+.step-override-hint { font-size:10px; color:var(--muted); }
+
+/* ═══════════════════════════════════════════════
+   MOBILE & TABLET RESPONSIVE — max-width 768px
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .page-body { padding: 16px 14px 40px; }
+  .step-banner { padding: 16px 16px 14px; }
+  .step-banner-title { font-size: 16px; }
+  .step-progress { display: none; }
+
+  /* KPI rows — stack to 2 cols on mobile */
+  .kpi-row-5, .kpi-row-4, .kpi-row-3 { grid-template-columns: 1fr 1fr; }
+  .kpi-row-2 { grid-template-columns: 1fr; }
+  .kpi-val { font-size: 20px; }
+
+  /* Two-col → single col */
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+  .export-grid  { grid-template-columns: 1fr; }
+
+  /* Stage cards → 1 col */
+  .stage-cards { grid-template-columns: 1fr 1fr; }
+  .bs-workflow-grid { grid-template-columns: 1fr 1fr; }
+  .bs-insight-cards { grid-template-columns: 1fr; }
+  .bs-result-hero   { grid-template-columns: 1fr; gap: 10px; }
+  .bs-cta-cards     { grid-template-columns: 1fr; }
+  .bs-result-savings { font-size: 32px; }
+
+  /* Role selector → stack */
+  .role-selector { grid-template-columns: 1fr; }
+
+  /* Form grid → single col */
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group.full { grid-column: 1; }
+  .step-override-grid { grid-template-columns: 1fr; }
+
+  /* Labour metrics → 2 col */
+  #labour-metrics-box { grid-template-columns: 1fr 1fr !important; }
+
+  /* Step footer — stack */
+  .step-footer { flex-direction: column; gap: 10px; align-items: stretch; }
+  .step-footer .btn { justify-content: center; }
+
+  /* Topbar */
+  .topbar-upper { padding: 0 14px; }
+  .topbar-lower { padding: 0 10px; }
+  .snav-item { padding: 0 12px; font-size: 11px; }
+  .snav-item span:not(.snav-num) { display: none; }
+
+  /* Tables — horizontal scroll */
+  .data-table, .stage-compare-table { font-size: 11px; }
+  .card-body { overflow-x: auto; }
+
+  /* Savings panel */
+  .savings-panel { padding: 16px; }
+  .sp-amt { font-size: 26px; }
+
+  /* Summary bar */
+  .bs-summary-bar { gap: 12px; padding: 12px 14px; }
+  .bs-sum-val { font-size: 16px; }
+  .bs-sum-div { display: none; }
+}
+
+@media (max-width: 480px) {
+  .stage-cards, .bs-workflow-grid { grid-template-columns: 1fr; }
+  .kpi-row-5, .kpi-row-4, .kpi-row-3, .kpi-row-2 { grid-template-columns: 1fr; }
+  .lp-hero { padding: 32px 16px 40px; }
+  .lp-preview { display: none; }
+  .lp-h1 { font-size: 26px; }
+  .lp-features-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ═══════════════════════════════════════════════
+   COMPARISON TABLE — TIME + COST COLUMNS
+═══════════════════════════════════════════════ */
+.sct-time-input {
+  width:100%; max-width:90px;
+  height:34px; padding:0 8px;
+  border:1px solid var(--border); border-radius:3px;
+  font-size:13px; font-family:'Source Sans 3',sans-serif;
+  color:var(--text); background:white;
+  text-align:right; transition:border-color .15s;
+}
+.sct-time-input:focus { outline:none; border-color:var(--ppg); box-shadow:0 0 0 2px var(--ppg-light); }
+.sct-time-saved { font-size:12px; font-weight:700; }
+.sct-time-saved.saving { color:var(--green); }
+.sct-time-saved.neutral { color:var(--muted); }
+
+/* ═══════════════════════════════════════════════
+   BODYSHOP STEP 3 — COST INPUT PER STEP
+═══════════════════════════════════════════════ */
+.bs-step-compare {
+  border-top:1px solid var(--border);
+  padding:10px 14px;
+  background:var(--ppg-pale);
+}
+.bs-step-compare-row {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:6px;
+}
+.bs-step-compare-label { font-size:11px; color:var(--muted); flex:1; }
+.bs-step-compare-val   { font-size:13px; font-weight:700; color:var(--ppg); }
+.bs-step-cost-input {
+  width:90px; height:32px; padding:0 8px;
+  border:1px solid var(--border); border-radius:3px;
+  font-size:12px; font-family:'Source Sans 3',sans-serif;
+  color:var(--text); background:white;
+  text-align:right; transition:border-color .15s;
+}
+.bs-step-cost-input:focus { outline:none; border-color:var(--ppg); box-shadow:0 0 0 2px var(--ppg-light); }
+.bs-step-saving { font-size:11px; font-weight:700; color:var(--green); margin-top:3px; }
+.bs-step-saving.loss { color:var(--red); }
+
+/* Bodyshop step 3 summary bar */
+.bs-compare-summary {
+  background:var(--ppg-deep); color:white;
+  border-radius:3px; padding:14px 18px;
+  display:none; align-items:center; gap:20px;
+  flex-wrap:wrap; margin-top:16px;
+}
+.bs-compare-summary.visible { display:flex; }
 </style>
 </head>
 <body>
@@ -1040,273 +1263,85 @@ footer strong { color:rgba(255,255,255,.75); }
         <div class="snav-num">5</div><span>Export</span>
       </div>
     </div>
-    
+    <span id="topbar-step-label" style="display:none"></span>
   </div>
 </nav>
 
 <!-- ═══════════════ PAGE 0 — LANDING ═══════════════ -->
 <div class="page active" id="page-0">
-
-  <!-- 1. HERO -->
   <section class="lp-hero">
     <div class="lp-hero-inner">
       <div>
-        
-        <div class="lp-eyebrow">⚙ Bodyshop Efficiency Tool</div>
-        <h1 class="lp-h1">How Efficient Is Your<br>Bodyshop <span>Really?</span></h1>
-        <p class="lp-sub">Calculate the real cost of non-paint materials per repair and discover opportunities to reduce waste, save time, and increase profitability — in under 2 minutes.</p>
+        <div class="lp-eyebrow">&#9881; PPG &middot; EMM Bodyshop Efficiency Tool</div>
+        <h1 class="lp-h1">Find out where your<br>bodyshop <span>loses money</span></h1>
+        <p class="lp-sub">Enter a few numbers about your workshop and get an instant breakdown of what every repair actually costs &mdash; and where you can save.</p>
         <div class="lp-cta-row">
-          <button class="lp-cta-primary" onclick="goTo(0)">Run the Efficiency Calculator →</button>
-          <button class="lp-cta-secondary" onclick="document.getElementById('lp-demo-section').scrollIntoView({behavior:'smooth'})">View Demo Results</button>
+          <button class="lp-cta-primary" onclick="goTo(0)">Run the free analysis &rarr;</button>
         </div>
-        <p class="lp-tagline">⚠ Non-paint materials can represent up to <strong style="color:rgba(255,255,255,.75)">15% of total repair costs</strong> — most bodyshops don't track them.</p>
+        <div style="display:flex;align-items:center;gap:20px;margin-top:16px;flex-wrap:wrap">
+          <button onclick="selectRole('bodyshop');goTo(0)" style="background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;color:rgba(255,255,255,.7);font-size:13px;font-weight:600;padding:0">&#128296; I run a bodyshop &rarr;</button>
+          <div style="width:1px;height:16px;background:rgba(255,255,255,.2)"></div>
+          <button onclick="selectRole('rep');goTo(0)" style="background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;color:rgba(255,255,255,.7);font-size:13px;font-weight:600;padding:0">&#128230; I'm a sales rep &rarr;</button>
+        </div>
+        <p class="lp-tagline" style="margin-top:20px">&#9888; Non-paint materials represent up to <strong style="color:rgba(255,255,255,.75)">15% of total repair costs</strong> &mdash; most bodyshops don't track them.</p>
       </div>
-
-      <!-- preview card -->
       <div class="lp-preview">
         <div class="lp-prev-head">
-          <div class="lp-prev-dots">
-            <div class="lp-prev-dot" style="background:#ff5f57"></div>
-            <div class="lp-prev-dot" style="background:#febc2e"></div>
-            <div class="lp-prev-dot" style="background:#28c840"></div>
-          </div>
-          <div class="lp-prev-label">Efficiency Dashboard — live output</div>
+          <div class="lp-prev-dots"><div class="lp-prev-dot" style="background:#ff5f57"></div><div class="lp-prev-dot" style="background:#febc2e"></div><div class="lp-prev-dot" style="background:#28c840"></div></div>
+          <div class="lp-prev-label">Efficiency Dashboard &mdash; example output</div>
         </div>
         <div class="lp-prev-body">
           <div class="lp-prev-kpis">
-            <div class="lp-prev-kpi">
-              <div class="lp-prev-kl">Labour util.</div>
-              <div class="lp-prev-kv">42.1%</div>
-              <div class="lp-prev-ks">Underutilised</div>
-            </div>
-            <div class="lp-prev-kpi g">
-              <div class="lp-prev-kl">Throughput</div>
-              <div class="lp-prev-kv">960</div>
-              <div class="lp-prev-ks">repairs/year max</div>
-            </div>
-            <div class="lp-prev-kpi a">
-              <div class="lp-prev-kl">Non-paint cost</div>
-              <div class="lp-prev-kv">€21.85</div>
-              <div class="lp-prev-ks">per repair</div>
-            </div>
-            <div class="lp-prev-kpi r">
-              <div class="lp-prev-kl">Bottleneck</div>
-              <div class="lp-prev-kv" style="font-size:14px;padding-top:4px">Booth</div>
-              <div class="lp-prev-ks">priority fix</div>
-            </div>
+            <div class="lp-prev-kpi"><div class="lp-prev-kl">Labour util.</div><div class="lp-prev-kv">42.1%</div><div class="lp-prev-ks">Underutilised</div></div>
+            <div class="lp-prev-kpi g"><div class="lp-prev-kl">Throughput</div><div class="lp-prev-kv">960</div><div class="lp-prev-ks">repairs/year max</div></div>
+            <div class="lp-prev-kpi a"><div class="lp-prev-kl">Non-paint cost</div><div class="lp-prev-kv">&euro;21.85</div><div class="lp-prev-ks">per repair</div></div>
+            <div class="lp-prev-kpi r"><div class="lp-prev-kl">Bottleneck</div><div class="lp-prev-kv" style="font-size:14px;padding-top:4px">Booth</div><div class="lp-prev-ks">priority fix</div></div>
           </div>
           <div class="lp-prev-bars">
-            <div class="lp-prev-bar-row">
-              <div class="lp-prev-bar-label">🔧 Preparation</div>
-              <div class="lp-prev-bar-track"><div class="lp-prev-bar-fill" style="width:85%;background:#0078A9"></div></div>
-              <div class="lp-prev-bar-val">1,088/yr</div>
-            </div>
-            <div class="lp-prev-bar-row">
-              <div class="lp-prev-bar-label">🎨 Painting</div>
-              <div class="lp-prev-bar-track"><div class="lp-prev-bar-fill" style="width:100%;background:#00bcd4"></div></div>
-              <div class="lp-prev-bar-val">1,306/yr</div>
-            </div>
-            <div class="lp-prev-bar-row">
-              <div class="lp-prev-bar-label">🏭 Booth ⚠</div>
-              <div class="lp-prev-bar-track"><div class="lp-prev-bar-fill" style="width:74%;background:#e53935"></div></div>
-              <div class="lp-prev-bar-val">960/yr</div>
-            </div>
-            <div class="lp-prev-bar-row">
-              <div class="lp-prev-bar-label">📋 Demand</div>
-              <div class="lp-prev-bar-track"><div class="lp-prev-bar-fill" style="width:38%;background:#f5a623"></div></div>
-              <div class="lp-prev-bar-val">500/yr</div>
-            </div>
+            <div class="lp-prev-bar-row"><div class="lp-prev-bar-label">&#128296; Preparation</div><div class="lp-prev-bar-track"><div class="lp-prev-bar-fill" style="width:85%;background:#0078A9"></div></div><div class="lp-prev-bar-val">1,088/yr</div></div>
+            <div class="lp-prev-bar-row"><div class="lp-prev-bar-label">&#127912; Painting</div><div class="lp-prev-bar-track"><div class="lp-prev-bar-fill" style="width:100%;background:#00bcd4"></div></div><div class="lp-prev-bar-val">1,306/yr</div></div>
+            <div class="lp-prev-bar-row"><div class="lp-prev-bar-label">&#127981; Booth &#9888;</div><div class="lp-prev-bar-track"><div class="lp-prev-bar-fill" style="width:74%;background:#e53935"></div></div><div class="lp-prev-bar-val">960/yr</div></div>
+            <div class="lp-prev-bar-row"><div class="lp-prev-bar-label">&#128203; Demand</div><div class="lp-prev-bar-track"><div class="lp-prev-bar-fill" style="width:38%;background:#f5a623"></div></div><div class="lp-prev-bar-val">500/yr</div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- 2. FEATURES -->
   <section class="lp-features">
     <div class="lp-section-head">
-      <div class="lp-section-title">Identify Hidden Costs in Your Repair Process</div>
-      <div class="lp-section-sub">Comprehensive non-paint consumption analysis to optimise every aspect of your bodyshop operations.</div>
+      <div class="lp-section-title">What you get in 2 minutes</div>
+      <div class="lp-section-sub">No login, no setup &mdash; just enter your workshop numbers and see your results instantly.</div>
     </div>
-    <div class="lp-features-grid">
-      <div class="lp-feature-card">
-        <div class="lp-feature-icon">🧮</div>
-        <div class="lp-feature-title">Analyse Non-Paint Consumption</div>
-        <div class="lp-feature-desc">Calculate real usage of masking, sanding, cleaning, and protection materials per repair. Based on EMM product catalog data — not guesswork.</div>
-      </div>
-      <div class="lp-feature-card">
-        <div class="lp-feature-icon">⚠</div>
-        <div class="lp-feature-title">Detect Your Bottleneck Stage</div>
-        <div class="lp-feature-desc">Instantly identify which process stage limits your total throughput — preparation, painting, or booth — and simulate the effect of improving it.</div>
-      </div>
-      <div class="lp-feature-card">
-        <div class="lp-feature-icon">📈</div>
-        <div class="lp-feature-title">Increase Profitability</div>
-        <div class="lp-feature-desc">Understand how small improvements in process efficiency translate to real financial gains — in labour cost, capacity value, and FTE saved per year.</div>
-      </div>
-      <div class="lp-feature-card">
-        <div class="lp-feature-icon">🏭</div>
-        <div class="lp-feature-title">Capacity Planning</div>
-        <div class="lp-feature-desc">See your current system throughput vs demand. Know exactly how many more repairs your workshop can handle before needing to invest in extra resources.</div>
-      </div>
-      <div class="lp-feature-card">
-        <div class="lp-feature-icon">💶</div>
-        <div class="lp-feature-title">ROI Calculation</div>
-        <div class="lp-feature-desc">Enter company product data to unlock Mode B — full ROI analysis showing financial savings, payback period, and net value versus investment cost.</div>
-      </div>
-      <div class="lp-feature-card">
-        <div class="lp-feature-icon">📄</div>
-        <div class="lp-feature-title">Export Full Report</div>
-        <div class="lp-feature-desc">Download a complete analysis report with all metrics, cost breakdowns, and recommendations. Share with your team or use it in client meetings.</div>
-      </div>
+    <div class="lp-features-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="lp-feature-card"><div class="lp-feature-icon">&#128182;</div><div class="lp-feature-title">What each repair really costs</div><div class="lp-feature-desc">See exactly how much you spend on masking, sanding, painting, and polishing materials per repair &mdash; broken down across all 9 process steps.</div></div>
+      <div class="lp-feature-card"><div class="lp-feature-icon">&#9888;</div><div class="lp-feature-title">What's slowing you down</div><div class="lp-feature-desc">Find out which part of your process is the bottleneck and what fixing it would mean for your capacity and revenue.</div></div>
+      <div class="lp-feature-card"><div class="lp-feature-icon">&#128176;</div><div class="lp-feature-title">How much you could save</div><div class="lp-feature-desc">Get a concrete savings estimate in euros per year, with a full report you can share with your team or your EMM rep.</div></div>
     </div>
   </section>
-
-  <!-- 3. DEMO RESULTS -->
   <section class="lp-demo" id="lp-demo-section">
     <div class="lp-demo-inner">
-      <div class="lp-section-head">
-        <div class="lp-section-title">Your Efficiency Results — Example</div>
-        <div class="lp-section-sub">Here's what a typical analysis looks like for a workshop with 1,200 repairs/year, 2 painters, 2 prep workers, 2 booths.</div>
-      </div>
-      <div class="lp-demo-note" style="background:#fff8e1;border:1px solid #fde68a;border-radius:2px;padding:8px 14px;justify-content:center;color:#92400e">
-        <div class="lp-demo-note-dot" style="background:var(--amber)"></div>
-        <strong>Example only</strong> — these are not your numbers. Enter your workshop data in the calculator to see your actual results.
-      </div>
+      <div class="lp-section-head"><div class="lp-section-title">Example results</div><div class="lp-section-sub">A workshop with 1,200 repairs/year, 2 painters, 2 prep workers, 1 booth.</div></div>
+      <div style="background:#fff8e1;border:1px solid #fde68a;border-radius:2px;padding:8px 14px;font-size:12px;color:#92400e;display:flex;align-items:center;gap:8px;margin-bottom:16px"><span>&#9888;</span><span><strong>Example only</strong> &mdash; enter your own data to see your actual numbers.</span></div>
       <div class="lp-demo-kpis">
-        <div class="lp-demo-kpi">
-          <div class="lp-demo-kpi-icon">💶</div>
-          <div class="lp-demo-kpi-label">Cost per repair</div>
-          <div class="lp-demo-kpi-val">€21.85</div>
-          <div class="lp-demo-kpi-sub">non-paint materials</div>
-        </div>
-        <div class="lp-demo-kpi a">
-          <div class="lp-demo-kpi-icon">⏱</div>
-          <div class="lp-demo-kpi-label">Process time</div>
-          <div class="lp-demo-kpi-val">4.67 hrs</div>
-          <div class="lp-demo-kpi-sub">280 min per repair</div>
-        </div>
-        <div class="lp-demo-kpi g">
-          <div class="lp-demo-kpi-icon">💰</div>
-          <div class="lp-demo-kpi-label">Annual savings potential</div>
-          <div class="lp-demo-kpi-val gr">€26,400</div>
-          <div class="lp-demo-kpi-sub">with 20% improvement</div>
-        </div>
-        <div class="lp-demo-kpi r">
-          <div class="lp-demo-kpi-icon">👤</div>
-          <div class="lp-demo-kpi-label">FTE equivalent</div>
-          <div class="lp-demo-kpi-val">0.44 FTE</div>
-          <div class="lp-demo-kpi-sub">workforce freed up</div>
-        </div>
+        <div class="lp-demo-kpi"><div class="lp-demo-kpi-icon">&#128182;</div><div class="lp-demo-kpi-label">Cost per repair</div><div class="lp-demo-kpi-val">&euro;21.85</div><div class="lp-demo-kpi-sub">non-paint materials</div></div>
+        <div class="lp-demo-kpi a"><div class="lp-demo-kpi-icon">&#9201;</div><div class="lp-demo-kpi-label">Process time</div><div class="lp-demo-kpi-val">5h 55min</div><div class="lp-demo-kpi-sub">per repair &middot; 9 steps</div></div>
+        <div class="lp-demo-kpi g"><div class="lp-demo-kpi-icon">&#128176;</div><div class="lp-demo-kpi-label">Annual savings potential</div><div class="lp-demo-kpi-val gr">&euro;26,400</div><div class="lp-demo-kpi-sub">with 20% process improvement</div></div>
+        <div class="lp-demo-kpi r"><div class="lp-demo-kpi-icon">&#9888;</div><div class="lp-demo-kpi-label">Bottleneck stage</div><div class="lp-demo-kpi-val" style="font-size:20px;padding-top:2px">Booth</div><div class="lp-demo-kpi-sub">limits total throughput</div></div>
       </div>
-
-      <div class="lp-cost-breakdown">
-        <div class="lp-cost-title">
-          Process Cost Breakdown
-          <span style="margin-left:auto;font-size:12px;color:var(--muted);font-weight:400">€21.85 total / repair · EMM data 2026</span>
-        </div>
+      <div class="lp-cost-breakdown" style="margin-top:16px">
+        <div class="lp-cost-title">Where the &euro;21.85 goes per repair <span style="margin-left:auto;font-size:12px;color:var(--muted);font-weight:400">EMM data 2026</span></div>
         <div class="lp-cost-rows">
-          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#4caf50"></div><div class="lp-cost-name">Sanding &amp; Surface</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:100%;background:#4caf50"></div></div><div class="lp-cost-eur">€8.69</div></div>
-          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#7b3fa0"></div><div class="lp-cost-name">Masking</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:74%;background:#7b3fa0"></div></div><div class="lp-cost-eur">€6.40</div></div>
-          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#00bcd4"></div><div class="lp-cost-name">Paint Preparation</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:45%;background:#00bcd4"></div></div><div class="lp-cost-eur">€3.90</div></div>
-          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#f5a623"></div><div class="lp-cost-name">Personal Protection</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:16%;background:#f5a623"></div></div><div class="lp-cost-eur">€1.38</div></div>
-          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#0078A9"></div><div class="lp-cost-name">Spraybooth Maintenance</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:10%;background:#0078A9"></div></div><div class="lp-cost-eur">€0.88</div></div>
-          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#e91e8c"></div><div class="lp-cost-name">Polishing</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:7%;background:#e91e8c"></div></div><div class="lp-cost-eur">€0.61</div></div>
+          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#4caf50"></div><div class="lp-cost-name">Sanding &amp; Surface</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:100%;background:#4caf50"></div></div><div class="lp-cost-eur">&euro;8.69</div></div>
+          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#7b3fa0"></div><div class="lp-cost-name">Masking</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:74%;background:#7b3fa0"></div></div><div class="lp-cost-eur">&euro;6.40</div></div>
+          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#00bcd4"></div><div class="lp-cost-name">Paint Preparation</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:45%;background:#00bcd4"></div></div><div class="lp-cost-eur">&euro;3.90</div></div>
+          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#f5a623"></div><div class="lp-cost-name">Personal Protection</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:16%;background:#f5a623"></div></div><div class="lp-cost-eur">&euro;1.38</div></div>
+          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#0078A9"></div><div class="lp-cost-name">Spraybooth Maintenance</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:10%;background:#0078A9"></div></div><div class="lp-cost-eur">&euro;0.88</div></div>
+          <div class="lp-cost-row"><div class="lp-cost-dot" style="background:#e91e8c"></div><div class="lp-cost-name">Polishing</div><div class="lp-cost-track"><div class="lp-cost-fill" style="width:7%;background:#e91e8c"></div></div><div class="lp-cost-eur">&euro;0.61</div></div>
         </div>
       </div>
-
-      <div class="lp-demo-ctas">
-        <button class="lp-cta-primary" onclick="goTo(0)">Run the Calculator with My Data →</button>
-        <button class="lp-cta-secondary" style="color:var(--ppg);border-color:var(--ppg);background:white" onclick="goTo(0)">See How It Works →</button>
-      </div>
+      <div style="text-align:center;margin-top:24px"><button class="lp-cta-primary" onclick="goTo(0)">Run the analysis with your numbers &rarr;</button></div>
     </div>
   </section>
-
-  <!-- 4. CTA BANNER -->
-  <section class="lp-cta-banner">
-    <div class="lp-cta-banner-title">Get Your Full Bodyshop Efficiency Report</div>
-    <div class="lp-cta-banner-sub">Receive a detailed efficiency analysis and recommended improvements for your bodyshop — free, in minutes.</div>
-    <button class="lp-cta-banner-btn" onclick="goTo(0)">Start Your Free Analysis →</button>
-  </section>
-
-  <!-- 5. FEATURED PRODUCTS -->
-  <section class="lp-products">
-    <div class="lp-section-head">
-      <div class="lp-section-title">Recommended Solutions</div>
-      <div class="lp-section-sub">Professional products from Colad, Finixa, and Hamach — optimised for every bodyshop process stage.</div>
-    </div>
-    <div class="lp-products-grid">
-      <div class="lp-prod-card">
-        <div class="lp-prod-brand">Colad</div>
-        <div class="lp-prod-name">Aqua Dynamic Masking Tape 130°C</div>
-        <div class="lp-prod-stage">Masking · SKU 9004xx</div>
-        <div class="lp-prod-cost"><span class="lp-prod-cost-label">Cost / repair</span><span class="lp-prod-cost-val">€2.69</span></div>
-
-
-      </div>
-      <div class="lp-prod-card">
-        <div class="lp-prod-brand">Colad</div>
-        <div class="lp-prod-name">Velcro Discs 150mm — 15 holes</div>
-        <div class="lp-prod-stage">Sanding &amp; Surface · SKU 368xx</div>
-        <div class="lp-prod-cost"><span class="lp-prod-cost-label">Cost / repair</span><span class="lp-prod-cost-val">€5.18</span></div>
-
-
-      </div>
-      <div class="lp-prod-card">
-        <div class="lp-prod-brand">Colad</div>
-        <div class="lp-prod-name">Snaplid &amp; Turbomix Paintsaver</div>
-        <div class="lp-prod-stage">Paint Preparation</div>
-        <div class="lp-prod-cost"><span class="lp-prod-cost-label">Cost / repair</span><span class="lp-prod-cost-val">€3.57</span></div>
-
-
-      </div>
-      <div class="lp-prod-card">
-        <div class="lp-prod-brand">Colad</div>
-        <div class="lp-prod-name">Stick&amp;Go Floor Protection Film</div>
-        <div class="lp-prod-stage">Spraybooth Maintenance · SKU 676010</div>
-        <div class="lp-prod-cost"><span class="lp-prod-cost-label">Cost / repair</span><span class="lp-prod-cost-val">€0.45</span></div>
-
-
-      </div>
-      <div class="lp-prod-card">
-        <div class="lp-prod-brand">Finixa</div>
-        <div class="lp-prod-name">Fine Dust Mask P2 with Valve</div>
-        <div class="lp-prod-stage">Personal Protection · SKU 5420</div>
-        <div class="lp-prod-cost"><span class="lp-prod-cost-label">Cost / repair</span><span class="lp-prod-cost-val">€0.57</span></div>
-
-
-      </div>
-      <div class="lp-prod-card">
-        <div class="lp-prod-brand">Finixa</div>
-        <div class="lp-prod-name">One Step Ready &amp; Advanced Cut</div>
-        <div class="lp-prod-stage">Polishing · SKU 8700/8600</div>
-        <div class="lp-prod-cost"><span class="lp-prod-cost-label">Cost / repair</span><span class="lp-prod-cost-val">€0.35</span></div>
-
-
-      </div>
-      <div class="lp-prod-card">
-        <div class="lp-prod-brand">Colad</div>
-        <div class="lp-prod-name">Masking Film 6375</div>
-        <div class="lp-prod-stage">Masking · SKU 6375</div>
-        <div class="lp-prod-cost"><span class="lp-prod-cost-label">Cost / repair</span><span class="lp-prod-cost-val">€1.77</span></div>
-
-
-      </div>
-      <div class="lp-prod-card">
-        <div class="lp-prod-brand">Colad</div>
-        <div class="lp-prod-name">Tack Cloth Waterbased</div>
-        <div class="lp-prod-stage">Sanding &amp; Surface · SKU 000805</div>
-        <div class="lp-prod-cost"><span class="lp-prod-cost-label">Cost / repair</span><span class="lp-prod-cost-val">€0.82</span></div>
-
-
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:24px">
-      <button class="lp-cta-secondary" style="color:var(--ppg);border-color:var(--ppg);background:white" onclick="showCatalog()">View All 23 Products →</button>
-    </div>
-  </section>
-
-  <!-- 6. BRAND STRIP -->
   <section class="lp-brands">
     <div class="lp-brands-inner">
       <div class="lp-brand-label">Powered by</div>
@@ -1321,12 +1356,9 @@ footer strong { color:rgba(255,255,255,.75); }
           <div class="lp-brand-name">Hamach</div>
         </div>
       </div>
-      <div style="margin-left:auto">
-        <button class="lp-cta-primary" onclick="goTo(0)" style="font-size:13px;padding:10px 20px">Start Free Analysis →</button>
-      </div>
+      <div style="margin-left:auto"><button class="lp-cta-primary" onclick="goTo(0)" style="font-size:13px;padding:10px 20px">Start Free Analysis &rarr;</button></div>
     </div>
   </section>
-
 </div>
 
 <!-- ═══════════════ PAGE 1 — WORKSHOP INPUT ═══════════════ -->
@@ -1335,7 +1367,7 @@ footer strong { color:rgba(255,255,255,.75); }
     <div>
       <div class="step-badge">Step 1 of 5</div>
       <div class="step-banner-title">Workshop Details</div>
-      <div class="step-banner-desc">Enter your current operational data. Benchmarks fill in automatically for any fields you leave blank.</div>
+      <div class="step-banner-desc" id="step1-role-desc">Enter your current operational data. Benchmarks fill in automatically for any fields you leave blank.</div>
     </div>
     <div class="step-progress">
       <div class="prog-dot active"></div>
@@ -1346,6 +1378,31 @@ footer strong { color:rgba(255,255,255,.75); }
     </div>
   </div>
   <div class="page-body">
+
+    <!-- RESTORE NOTICE -->
+    <div id="restore-notice" style="display:none;max-width:700px;margin:0 auto 14px;background:#e6f3f9;border:1px solid #0078A9;border-left:3px solid #0078A9;border-radius:2px;padding:9px 14px;font-size:12px;color:#005a82;align-items:center;gap:10px">
+      <span>💾</span>
+      <span style="flex:1">Your previous inputs have been restored.</span>
+      <button onclick="clearSavedForm()" style="background:none;border:none;cursor:pointer;font-size:11px;font-weight:700;color:#005a82;font-family:'Source Sans 3',sans-serif;padding:0">Clear ✕</button>
+    </div>
+    <!-- ROLE SELECTOR -->
+    <div style="max-width:700px;margin:0 auto 20px">
+      <div style="font-size:12px;font-weight:700;color:var(--ppg-deep);margin-bottom:10px;display:flex;align-items:center;gap:6px">
+        Who are you? <span style="font-size:11px;font-weight:400;color:var(--muted)">(optional — personalises your experience)</span>
+      </div>
+      <div class="role-selector">
+        <div class="role-card" id="role-bodyshop" onclick="selectRole('bodyshop')">
+          <div class="role-card-icon">🔧</div>
+          <div class="role-card-body"><div class="role-card-title">I run a bodyshop</div><div class="role-card-desc">I want to understand where my workshop loses time and money</div></div>
+          <div class="role-check">✓</div>
+        </div>
+        <div class="role-card" id="role-rep" onclick="selectRole('rep')">
+          <div class="role-card-icon">📦</div>
+          <div class="role-card-body"><div class="role-card-title">I'm a sales rep / distributor</div><div class="role-card-desc">I want to show my customer the ROI of switching to EMM products</div></div>
+          <div class="role-check">✓</div>
+        </div>
+      </div>
+    </div>
 
     <div class="card" style="max-width:700px;margin:0 auto">
       <div class="card-head">
@@ -1411,9 +1468,22 @@ footer strong { color:rgba(255,255,255,.75); }
           </button>
 
           <div class="adv-section" id="adv-section">
+            <!-- Row 1: Capacity benchmarks -->
             <div class="form-group">
               <label class="form-label">Working days/year <span class="form-unit">(days)</span></label>
               <input class="form-input" type="number" id="working_days_per_year" placeholder="Default: 240">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Working hours/day <span class="form-unit">(hrs)</span>
+                <span class="info">i<span class="tip">Hours worked per day. Default 8h. Use 7.5 for a 37.5hr week.</span></span>
+              </label>
+              <input class="form-input" type="number" id="hours_per_day" placeholder="Default: 8" step="0.5" min="1" max="12">
+            </div>
+            <div class="form-group">
+              <label class="form-label">FTE hours/year <span class="form-unit">(hrs)</span>
+                <span class="info">i<span class="tip">Contractual hours per FTE per year. Default 1,800h. Affects FTE saved calculation.</span></span>
+              </label>
+              <input class="form-input" type="number" id="fte_hours_year" placeholder="Default: 1800" step="50" min="1000">
             </div>
             <div class="form-group">
               <label class="form-label">Prep time/repair <span class="form-unit">(hours)</span></label>
@@ -1426,6 +1496,29 @@ footer strong { color:rgba(255,255,255,.75); }
             <div class="form-group">
               <label class="form-label">Booth cycle time/repair <span class="form-unit">(hours)</span></label>
               <input class="form-input" type="number" id="average_booth_cycle_time_per_repair" placeholder="Default: 2.0" step="0.1">
+            </div>
+
+            <!-- Per-step time overrides -->
+            <div class="form-group full" style="margin-top:8px">
+              <button type="button" onclick="toggleStepOverrides()" style="background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--ppg);padding:4px 0">
+                <span id="step-overrides-arrow" style="font-size:10px;transition:transform .2s;display:inline-block">▶</span>
+                Override time per process step
+                <span style="font-size:10px;font-weight:400;color:var(--muted)">(industry benchmarks pre-filled · min–max range shown)</span>
+              </button>
+              <div id="step-overrides-section" style="display:none;margin-top:10px;background:var(--ppg-pale);border:1px solid var(--border);border-radius:3px;padding:14px">
+                <div style="font-size:11px;color:var(--muted);margin-bottom:12px">Enter your actual time per step in minutes. Leave blank to use the industry benchmark midpoint.</div>
+                <div class="step-override-grid">
+                  <div class="step-override-row"><label class="step-override-label">1. Inspection <span class="step-override-hint">benchmark 10–20 min</span></label><input class="form-input" type="number" id="step_min_inspection" placeholder="Default: 15" min="1" step="1"></div>
+                  <div class="step-override-row"><label class="step-override-label">2. Cleaning <span class="step-override-hint">benchmark 15–30 min</span></label><input class="form-input" type="number" id="step_min_cleaning" placeholder="Default: 22" min="1" step="1"></div>
+                  <div class="step-override-row"><label class="step-override-label">3. Disassembly <span class="step-override-hint">benchmark 20–45 min</span></label><input class="form-input" type="number" id="step_min_disassembly" placeholder="Default: 32" min="1" step="1"></div>
+                  <div class="step-override-row"><label class="step-override-label">4. Panel / Plastic Repair <span class="step-override-hint">benchmark 30–90 min</span></label><input class="form-input" type="number" id="step_min_repair" placeholder="Default: 60" min="1" step="1"></div>
+                  <div class="step-override-row"><label class="step-override-label">5. Preparation Zone <span class="step-override-hint">benchmark 60–120 min</span></label><input class="form-input" type="number" id="step_min_prepzone" placeholder="Default: 90" min="1" step="1"></div>
+                  <div class="step-override-row"><label class="step-override-label">6. Paint Application <span class="step-override-hint">benchmark 45–90 min</span></label><input class="form-input" type="number" id="step_min_paint" placeholder="Default: 67" min="1" step="1"></div>
+                  <div class="step-override-row"><label class="step-override-label">7. Paint Correction <span class="step-override-hint">benchmark 15–45 min</span></label><input class="form-input" type="number" id="step_min_correction" placeholder="Default: 30" min="1" step="1"></div>
+                  <div class="step-override-row"><label class="step-override-label">8. Assembly & Cleaning <span class="step-override-hint">benchmark 15–40 min</span></label><input class="form-input" type="number" id="step_min_assembly" placeholder="Default: 27" min="1" step="1"></div>
+                  <div class="step-override-row"><label class="step-override-label">9. Supporting Processes <span class="step-override-hint">benchmark 5–20 min</span></label><input class="form-input" type="number" id="step_min_supporting" placeholder="Default: 12" min="1" step="1"></div>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -1571,7 +1664,7 @@ footer strong { color:rgba(255,255,255,.75); }
     <div style="margin-bottom:8px">
       <button onclick="toggleFullAnalysis()" id="full-analysis-toggle" style="background:none;border:none;color:var(--ppg);font-size:12px;font-weight:700;font-family:'Source Sans 3',sans-serif;cursor:pointer;display:flex;align-items:center;gap:5px;padding:4px 0">
         <span id="full-analysis-arrow" style="font-size:10px;transition:transform .2s">▶</span>
-        Show full process cost breakdown
+        <span id="full-analysis-label">Show full process cost breakdown</span>
       </button>
     </div>
     <div id="full-analysis-section" style="display:none">
@@ -1585,7 +1678,7 @@ footer strong { color:rgba(255,255,255,.75); }
       </div>
       <div class="card-body">
         <table class="data-table">
-          <thead>
+          <thead id="cost-thead">
             <tr>
               <th>Process stage</th>
               <th>
@@ -1628,7 +1721,7 @@ footer strong { color:rgba(255,255,255,.75); }
 
     <div class="step-footer">
       <button class="btn btn-secondary" onclick="goTo(0)">← Edit Inputs</button>
-      <button class="btn btn-primary" onclick="goTo(2)">Next: Compare with EMM →</button>
+      <button class="btn btn-primary" id="s2-next-btn" onclick="goTo(2)">Next: Compare with EMM →</button>
     </div>
   </div>
 </div>
@@ -1637,8 +1730,8 @@ footer strong { color:rgba(255,255,255,.75); }
 <div class="page" id="page-3">
   <div class="step-banner">
     <div class="step-badge">Step 3 of 5</div>
-    <div class="step-banner-title">Products &amp; Cost Comparison</div>
-    <div class="step-banner-desc">Compare your current material costs against EMM products per stage — or skip to continue with the diagnostic.</div>
+    <div class="step-banner-title" id="s3-banner-title">Products &amp; Cost Comparison</div>
+    <div class="step-banner-desc" id="s3-banner-desc">Compare your current material costs against EMM products per stage — or skip to continue with the diagnostic.</div>
     <div class="step-progress">
       <div class="prog-dot done"></div>
       <div class="prog-dot done"></div>
@@ -1649,6 +1742,49 @@ footer strong { color:rgba(255,255,255,.75); }
   </div>
   <div class="page-body">
 
+    <!-- BODYSHOP VIEW -->
+    <div id="s3-bodyshop-view" style="display:none">
+      <div class="bs-summary-bar" id="bs-summary"></div>
+
+      <!-- MONTHLY SPEND INPUT -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-head">
+          <div class="card-head-icon">💶</div>
+          <div>
+            <div class="card-title">What do you spend on materials?</div>
+            <div class="card-desc">Optional — enter your total monthly or annual spend and we distribute it across your 9 steps automatically</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:end">
+            <div class="form-group">
+              <label class="form-label">Monthly spend on consumables <span class="form-unit">(€/month)</span>
+                <span class="info">i<span class="tip">Your total monthly spend on non-paint materials — masking tape, sanding discs, PPE, etc. Check your supplier invoices. We distribute this across your 9 process steps proportionally.</span></span>
+              </label>
+              <input class="form-input" type="number" id="bs-monthly-spend" placeholder="e.g. 1800" min="0" step="50" oninput="distributeMonthlySpend()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Or annual spend <span class="form-unit">(€/year)</span></label>
+              <input class="form-input" type="number" id="bs-annual-spend" placeholder="e.g. 21600" min="0" step="100" oninput="distributeAnnualSpend()">
+            </div>
+            <div>
+              <button class="btn btn-ghost" onclick="clearBsSpend()" style="font-size:12px">Clear spend inputs</button>
+            </div>
+          </div>
+          <div id="bs-spend-note" style="display:none;margin-top:10px;padding:8px 12px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:2px;font-size:12px;color:#2e7d32"></div>
+        </div>
+      </div>
+
+      <div class="bs-workflow-grid" id="bs-stage-grid"></div>
+      <div class="bs-compare-summary" id="bs-compare-summary"></div>
+
+      <div class="step-footer" style="margin-top:24px">
+        <button class="btn btn-secondary" onclick="goTo(1)">← Back to Analysis</button>
+        <button class="btn btn-primary" onclick="goTo(3)">View My Results →</button>
+      </div>
+    </div>
+    <!-- REP / DEFAULT VIEW -->
+    <div id="s3-rep-view">
     <!-- Stage comparison card -->
     <div class="card" style="margin-bottom:16px">
       <div class="card-head">
@@ -1665,19 +1801,42 @@ footer strong { color:rgba(255,255,255,.75); }
         </div>
       </div>
       <div class="card-body" style="padding-top:0">
-        <div style="background:#fff8e1;border:1px solid #fde68a;border-left:3px solid var(--amber);border-radius:2px;padding:10px 14px;font-size:12px;color:#92400e;margin-bottom:14px;display:flex;align-items:flex-start;gap:8px">
-          <span>💡</span>
-          <span><strong>How to use this:</strong> Enter what you currently spend on materials per repair for each stage. For example, if you spend €8 on masking materials per repair, enter 8.00 in that row. Leave blank if you don't track a stage — EMM costs will be used as-is. The tool then shows you where you save by switching to EMM products.</span>
+        <!-- SPEND DISTRIBUTOR -->
+        <div style="background:var(--ppg-pale);border:1px solid var(--ppg-light);border-radius:3px;padding:14px 16px;margin-bottom:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--ppg-deep);margin-bottom:10px;display:flex;align-items:center;gap:6px">
+            📋 Start from total spend — distribute automatically
+            <span style="font-size:11px;font-weight:400;color:var(--muted)">(recommended — most clients know their monthly invoice totals)</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end;margin-bottom:10px">
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Client monthly spend on consumables <span class="form-unit">(€/month)</span>
+                <span class="info">i<span class="tip">Total monthly invoice from suppliers for non-paint consumables — masking, sanding, PPE etc. Distributed across the 6 EMM stages by their cost proportion.</span></span>
+              </label>
+              <input class="form-input" type="number" id="rep-monthly-spend" placeholder="e.g. 1800" min="0" step="50" oninput="distributeRepSpend('monthly')">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Or annual spend <span class="form-unit">(€/year)</span></label>
+              <input class="form-input" type="number" id="rep-annual-spend" placeholder="e.g. 21600" min="0" step="100" oninput="distributeRepSpend('annual')">
+            </div>
+            <button class="btn btn-ghost" onclick="clearRepSpend()" style="font-size:12px;white-space:nowrap">Clear ✕</button>
+          </div>
+          <div id="rep-spend-note" style="display:none;padding:8px 12px;border-radius:2px;font-size:12px"></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:8px">
+            💡 Or enter time and cost per stage manually in the table below for a more precise comparison.
+          </div>
         </div>
         <table class="stage-compare-table">
           <thead>
             <tr>
-              <th style="width:200px">Process stage</th>
+              <th style="width:180px">Process stage</th>
+              <th class="amt">EMM time <span class="stage-compare-thead-hint">per repair</span></th>
+              <th class="amt">Client time <span class="stage-compare-thead-hint">enter min</span></th>
+              <th class="amt">Time saved <span class="stage-compare-thead-hint">per repair</span></th>
               <th class="amt">EMM cost/repair <span class="stage-compare-thead-hint">pre-filled</span></th>
-              <th class="amt">Your current cost/repair <span class="stage-compare-thead-hint">enter to compare</span></th>
-              <th class="amt">Saving with EMM <span class="stage-compare-thead-hint">per repair</span></th>
-              <th class="amt">Annual saving <span class="stage-compare-thead-hint">at your volume</span></th>
-              <th style="width:90px"></th>
+              <th class="amt">Client cost/repair <span class="stage-compare-thead-hint">enter €</span></th>
+              <th class="amt">Cost saving <span class="stage-compare-thead-hint">per repair</span></th>
+              <th class="amt">Annual saving <span class="stage-compare-thead-hint">at volume</span></th>
+              <th style="width:80px"></th>
             </tr>
           </thead>
           <tbody id="sct-body"></tbody>
@@ -1701,6 +1860,11 @@ footer strong { color:rgba(255,255,255,.75); }
             <div class="ssb-val" id="ssb-stages">—</div>
           </div>
           <div class="ssb-div"></div>
+          <div class="ssb-div"></div>
+          <div class="ssb-item">
+            <div class="ssb-label">Time saved / repair</div>
+            <div class="ssb-val green" id="ssb-time">—</div>
+          </div>
           <div class="ssb-item" style="margin-left:auto">
             <button class="btn btn-success" onclick="applyStageComparison()" style="font-size:13px">
               Calculate Full ROI →
@@ -1708,47 +1872,26 @@ footer strong { color:rgba(255,255,255,.75); }
           </div>
         </div>
 
-        <!-- Advanced EMM Rep Data — always visible -->
-        <div id="improv-fields" style="margin-top:20px;border-top:2px solid var(--border);padding-top:16px">
-          <button id="emm-adv-toggle" onclick="toggleEMMAdv()" style="background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;display:flex;align-items:center;gap:8px;padding:0;width:100%">
-            <span style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--ppg-deep)">
-              <span id="emm-adv-arrow" style="font-size:10px;transition:transform .2s;display:inline-block">▶</span>
-              Advanced — EMM Rep Data
-              <span style="background:var(--ppg-light);color:var(--ppg);font-size:9px;font-weight:700;padding:2px 7px;border-radius:2px;border:1px solid var(--ppg);text-transform:uppercase;letter-spacing:.04em">Optional</span>
-            </span>
-            <span style="margin-left:auto;font-size:11px;color:var(--muted);font-weight:400">Fill in with your EMM sales rep to unlock full ROI</span>
-          </button>
-          <div id="emm-adv-section" style="display:none;margin-top:14px">
-            <div style="background:var(--ppg-pale);border:1px solid var(--border);border-radius:3px;padding:16px">
-              <div style="font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">These two values come from your EMM sales rep. Once filled in, the tool calculates full ROI — including labour time savings on top of the material cost savings above.</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-                <div style="display:flex;flex-direction:column;gap:4px">
-                  <label style="font-size:12px;font-weight:700;color:var(--ppg-deep);display:flex;align-items:center;gap:6px">
-                    Improvement factor
-                    <span class="info">i<span class="tip">How much faster repairs become using EMM products overall. 1.2 = 20% faster. Example: a repair taking 5.5h today would take 5.5 ÷ 1.2 = 4.58h. Provided by your EMM rep based on product testing data.</span></span>
-                  </label>
-                  <input class="form-input" type="number" id="improvement_factor" placeholder="e.g. 1.2" step="0.01" min="1" oninput="checkEMMFields()">
-                  <div class="form-hint">1.2 = 20% faster · 1.3 = 30% faster · provided by EMM rep</div>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:4px">
-                  <label style="font-size:12px;font-weight:700;color:var(--ppg-deep);display:flex;align-items:center;gap:6px">
-                    EMM program cost / year <span style="font-size:11px;color:var(--muted);font-weight:400">(€, annualised)</span>
-                    <span class="info">i<span class="tip">Annual cost of the EMM product program for your bodyshop — set by your EMM sales rep. Must be annualised. Example: €9,000 one-time over 3 years = €3,000/year.</span></span>
-                  </label>
-                  <input class="form-input" type="number" id="investment_cost" placeholder="e.g. 3000" step="100" min="0" oninput="checkEMMFields()">
-                  <div class="form-hint">Annual cost only · set by your EMM sales rep</div>
-                </div>
-              </div>
-              <div id="emm-status" style="display:none;margin-top:14px;padding:10px 14px;border-radius:2px;font-size:12px;background:#f0fdf4;border:1px solid #86efac;color:#166534">
-                ✓ Both fields filled — <strong>click "Calculate Full ROI" to see full ROI calculation</strong>
-              </div>
-              <div id="emm-status-partial" style="display:none;margin-top:14px;padding:10px 14px;border-radius:2px;font-size:12px;background:#fff8e1;border:1px solid #fde68a;color:#92400e">
-                Fill in both fields to unlock full ROI — or leave blank to continue with material cost comparison only.
-              </div>
-              <div style="margin-top:14px">
-                <button class="btn btn-primary" style="width:100%" onclick="applyStageComparison()">Calculate Full ROI →</button>
-              </div>
-            </div>
+        <!-- Additional Mode B fields -->
+        <div class="improv-row" id="improv-fields" style="display:none">
+          <div class="form-group">
+            <label class="form-label">
+              EMM tested improvement factor
+              <span class="info">i<span class="tip">How much faster each repair becomes using EMM products — based on R&D testing data. 1.2 = 20% faster. Pre-filled by your EMM sales rep. Used to calculate time savings on top of material cost savings.</span></span>
+            </label>
+            <input class="form-input" type="number" id="improvement_factor" placeholder="e.g. 1.2 — pre-filled by EMM rep" step="0.01">
+            <div class="form-hint">Based on EMM product R&amp;D testing · ask your rep for this value</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              EMM program cost / year <span class="form-unit">(€, annualised)</span>
+              <span class="info">i<span class="tip">Annual cost of the EMM product program or contract for this bodyshop. Pre-filled by your EMM sales rep based on the agreed product package. Used to calculate ROI and payback period.</span></span>
+            </label>
+            <input class="form-input" type="number" id="investment_cost" placeholder="e.g. 3000 — pre-filled by EMM rep" step="100">
+            <div class="form-hint">Fixed by EMM contract · set by your sales rep</div>
+          </div>
+          <div class="form-group" style="align-self:end">
+            <button class="btn btn-primary" style="width:100%" onclick="applyStageComparison()">Calculate Full ROI →</button>
           </div>
         </div>
         <div class="mode-b-calc-note" id="mode-b-note">
@@ -1788,6 +1931,7 @@ footer strong { color:rgba(255,255,255,.75); }
         <button class="btn btn-primary" onclick="goTo(3)">View Results →</button>
       </div>
     </div>
+    </div><!-- /s3-rep-view -->
   </div>
 </div>
 
@@ -1809,7 +1953,18 @@ footer strong { color:rgba(255,255,255,.75); }
   </div>
   <div class="page-body">
     <div id="step4-notice"></div>
-
+    <!-- BODYSHOP VIEW -->
+    <div id="r4-bodyshop-view" style="display:none">
+      <div class="bs-result-hero" id="bs4-hero"></div>
+      <div class="bs-insight-cards" id="bs4-insights"></div>
+      <div class="bs-cost-breakdown"><div class="bs-cost-title">⏱ Time across your 9 repair steps <span style="margin-left:auto;font-size:11px;color:var(--muted);font-weight:400">minutes per repair · industry benchmarks</span></div><div id="bs4-breakdown"></div></div>
+      <div class="step-footer">
+        <button class="btn btn-secondary" onclick="goTo(2)">← Back</button>
+        <button class="btn btn-primary" onclick="goTo(4)">Next: What to do →</button>
+      </div>
+    </div>
+    <!-- REP / DEFAULT VIEW -->
+    <div id="r4-rep-view">
     <!-- KPI strip -->
     <div class="kpi-row kpi-row-4" style="margin-bottom:16px">
       <div class="kpi">
@@ -1905,6 +2060,7 @@ footer strong { color:rgba(255,255,255,.75); }
       <button class="btn btn-secondary" onclick="goTo(2)">← Edit Product Data</button>
       <button class="btn btn-primary" onclick="goTo(4)">Export Report →</button>
     </div>
+    </div><!-- /r4-rep-view -->
   </div>
 </div>
 
@@ -1913,8 +2069,8 @@ footer strong { color:rgba(255,255,255,.75); }
   <div class="step-banner">
     <div>
       <div class="step-badge">Step 5 of 5</div>
-      <div class="step-banner-title">Download Your Report</div>
-      <div class="step-banner-desc">Fill in your details below, then click Download to get your full PDF report.</div>
+      <div class="step-banner-title" id="s5-banner-title">Export Report</div>
+      <div class="step-banner-desc" id="s5-banner-desc">Fill in your details to receive the full analysis report and save your results.</div>
     </div>
     <div class="step-progress">
       <div class="prog-dot done"></div>
@@ -1925,59 +2081,99 @@ footer strong { color:rgba(255,255,255,.75); }
     </div>
   </div>
   <div class="page-body">
+    <!-- BODYSHOP CTA VIEW -->
+    <div id="s5-bodyshop-view" style="display:none">
+      <div class="bs-cta-wrap">
+        <div class="bs-summary-bar" id="bs5-result-bar"></div>
+        <div class="bs-cta-cards">
+          <div class="bs-cta-card primary">
+            <div class="bs-cta-card-icon">📦</div>
+            <div class="bs-cta-card-title">Request a starter kit</div>
+            <div class="bs-cta-card-desc">Get a free sample kit of the top EMM products for your bodyshop — try them on real repairs before committing.</div>
+            <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="alert('Starter kit request — CRM integration coming soon!')">Request Starter Kit →</button>
+          </div>
+          <div class="bs-cta-card">
+            <div class="bs-cta-card-icon">🤝</div>
+            <div class="bs-cta-card-title">Talk to a sales rep</div>
+            <div class="bs-cta-card-desc">A local EMM rep will walk through your results and build a custom product plan for your workshop.</div>
+            <button class="btn btn-secondary" style="width:100%;justify-content:center" onclick="alert('Contact rep — CRM integration coming soon!')">Contact a Rep →</button>
+          </div>
+        </div>
+        <div class="bs-or-divider"><span class="bs-or-text">OR</span></div>
+        <div class="card" style="margin-top:16px">
+          <div class="card-head"><div class="card-head-icon">📄</div><div><div class="card-title">Download your report</div><div class="card-desc">Save a PDF of your full analysis</div></div></div>
+          <div class="card-body">
+            <div class="form-grid">
+              <div class="form-group"><label class="form-label">Your name</label><input class="form-input" id="export-name" type="text" placeholder="e.g. Jan Peeters"></div>
+              <div class="form-group"><label class="form-label">Bodyshop name</label><input class="form-input" id="export-bodyshop" type="text" placeholder="e.g. Garage Peeters"></div>
+              <div class="form-group"><label class="form-label">Country</label><input class="form-input" id="export-country" type="text" placeholder="e.g. Belgium"></div>
+              <div class="form-group"><label class="form-label">Email <span class="form-unit">(optional)</span></label><input class="form-input" id="export-email" type="email" placeholder="your@email.com"></div>
+            </div>
+            <div style="margin-top:16px">
+              <button class="btn btn-primary" onclick="generateReport()" style="width:100%;justify-content:center;font-size:14px;padding:12px">📄 Download PDF Report</button>
+              <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:6px">Opens in new tab → File → Print → Save as PDF</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-footer" style="margin-top:24px">
+          <button class="btn btn-secondary" onclick="goTo(3)">← Back to Results</button>
+          <button class="btn btn-primary" onclick="showHero()">Start New Analysis</button>
+        </div>
+      </div>
+    </div>
+    <!-- REP / DEFAULT VIEW -->
+    <div id="s5-rep-view">
 
-    <!-- Key findings bar -->
     <div id="export-findings" style="display:none;background:var(--ppg-deep);color:white;border-radius:3px;padding:18px 20px;margin-bottom:20px">
       <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Key Findings</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px" id="export-findings-grid"></div>
     </div>
-
     <div id="export-error" style="display:none"></div>
-
     <div class="export-grid">
-      <!-- LEFT: form + download button -->
+
       <div style="display:flex;flex-direction:column;gap:16px">
         <div class="card">
           <div class="card-head">
-            <div class="card-head-icon">📄</div>
+            <div class="card-head-icon">👤</div>
             <div>
-              <div class="card-title">Your Details</div>
-              <div class="card-desc">Optional — used to personalise the report header</div>
+              <div class="card-title">Contact Details</div>
+              <div class="card-desc">Required to generate and send your report</div>
             </div>
           </div>
           <div class="card-body">
+            <!-- Primary: generate immediately -->
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:14px 16px;background:var(--ppg-pale);border-radius:3px;border:1px solid var(--border);margin-bottom:20px">
+              <div style="flex:1;min-width:180px">
+                <div style="font-size:13px;font-weight:700;color:var(--ppg-deep);margin-bottom:2px">Ready to export</div>
+                <div style="font-size:11px;color:var(--muted)">Opens in a new tab — use Print to save as PDF</div>
+              </div>
+              <button class="btn btn-primary" onclick="generateReport()" style="font-size:14px;padding:11px 24px">📄 Generate Full Report</button>
+              <button class="btn btn-ghost" onclick="downloadJSON()">↓ JSON</button>
+            </div>
+            <!-- Secondary: optional email capture -->
+            <div style="font-size:12px;font-weight:700;color:var(--ppg-deep);margin-bottom:10px;display:flex;align-items:center;gap:6px">
+              📧 Send report by email <span style="font-size:10px;font-weight:400;color:var(--muted)">(optional)</span>
+            </div>
             <div class="form-grid">
               <div class="form-group">
-                <label class="form-label">Your name</label>
-                <input class="form-input" id="export-name" type="text" placeholder="e.g. Jan Peeters">
+                <label class="form-label">Contact name</label>
+                <input class="form-input" id="export-name" type="text" placeholder="Your name">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email address</label>
+                <input class="form-input" id="export-email" type="email" placeholder="your@email.com">
               </div>
               <div class="form-group">
                 <label class="form-label">Bodyshop name</label>
-                <input class="form-input" id="export-bodyshop" type="text" placeholder="e.g. Garage Peeters">
+                <input class="form-input" id="export-bodyshop" type="text" placeholder="Workshop name">
               </div>
               <div class="form-group">
                 <label class="form-label">Country</label>
-                <input class="form-input" id="export-country" type="text" placeholder="e.g. Belgium">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Email <span class="form-unit">(optional)</span></label>
-                <input class="form-input" id="export-email" type="email" placeholder="your@email.com">
+                <input class="form-input" id="export-country" type="text" placeholder="Belgium">
               </div>
             </div>
-
-            <!-- PRIMARY ACTION -->
-            <div style="margin-top:20px;padding-top:16px;border-top:2px solid var(--border)">
-              <button class="btn btn-primary" onclick="generateReport()" style="width:100%;font-size:15px;padding:13px 24px;justify-content:center">
-                📄 Download PDF Report
-              </button>
-              <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:8px">
-                Opens in a new tab → use <strong>File → Print → Save as PDF</strong> to save
-              </div>
-            </div>
-
-            <!-- Secondary: JSON -->
-            <div style="margin-top:12px;text-align:center">
-              <button class="btn btn-ghost" onclick="downloadJSON()" style="font-size:11px">↓ Export raw data (JSON)</button>
+            <div style="margin-top:12px">
+              <button class="btn btn-secondary" onclick="submitReport()">📧 Send by Email</button>
             </div>
           </div>
         </div>
@@ -2011,6 +2207,7 @@ footer strong { color:rgba(255,255,255,.75); }
       <button class="btn btn-secondary" onclick="goTo(3)">← Back to Results</button>
       <button class="btn btn-primary" onclick="showHero()">Start New Analysis</button>
     </div>
+    </div><!-- /s5-rep-view -->
   </div>
 </div>
 
@@ -2062,12 +2259,12 @@ function showSuccess(elId, msg) {
 function toggleFullAnalysis() {
   const section = document.getElementById('full-analysis-section');
   const arrow   = document.getElementById('full-analysis-arrow');
-  const toggle  = document.getElementById('full-analysis-toggle');
+  const label   = document.getElementById('full-analysis-label');
   const isOpen  = section.style.display !== 'none';
   section.style.display = isOpen ? 'none' : 'block';
   arrow.style.transform = isOpen ? '' : 'rotate(90deg)';
-  toggle.querySelector('span:last-child') || null;
-  toggle.lastChild.textContent = isOpen ? ' Show full process cost breakdown' : ' Hide process cost breakdown';
+  const base = userRole === 'bodyshop' ? 'process step breakdown' : 'process cost breakdown';
+  if (label) label.textContent = isOpen ? 'Show full ' + base : 'Hide ' + base;
 }
 
 // ══════════════════════════════════════════════
@@ -2075,6 +2272,7 @@ function toggleFullAnalysis() {
 // ══════════════════════════════════════════════
 let currentStep = -1;
 let engineResults = null;
+let userRole = null;
 let charts = {};
 
 const PAGES = ['page-0','page-1','page-2','page-3','page-4','page-5','page-6'];
@@ -2141,7 +2339,8 @@ function goTo(step) {
   }
   currentStep = step;
   // Show step progress label
-
+  const lbl = document.getElementById('topbar-step-label');
+  if (lbl) { lbl.style.display = 'block'; lbl.textContent = `Step ${step+1} of 5`; }
   window.scrollTo(0,0);
 }
 
@@ -2152,8 +2351,531 @@ function showHero() {
     el.classList.remove('active','done');
   }
   document.getElementById('nav-0').classList.add('active');
-
+  const lbl = document.getElementById('topbar-step-label');
+  if (lbl) lbl.style.display = 'none';
+  // NOTE: userRole is intentionally NOT reset here — role persists through navigation
   window.scrollTo(0,0);
+}
+
+
+// ══════════════════════════════════════════════
+// BODYSHOP 9-STEP WORKFLOW DATA
+// ══════════════════════════════════════════════
+const BODYSHOP_STEPS = [
+  { id:'inspection',   num:1, name:'Inspection',             icon:'🔍', color:'#0078A9', defaultMin:15, bMin:10, bMax:20,
+    modules:['Paint Prep','PPE'],
+    why:'Initial damage assessment — sets the scope for everything that follows.' },
+  { id:'cleaning',     num:2, name:'Cleaning',               icon:'🧼', color:'#00bcd4', defaultMin:22, bMin:15, bMax:30,
+    modules:['Polishing & Paint Correction','Surface Prep'],
+    why:'Remove contamination before any repair work begins.' },
+  { id:'disassembly',  num:3, name:'Disassembly',            icon:'🔩', color:'#7b3fa0', defaultMin:32, bMin:20, bMax:45,
+    modules:['Workshop & Equipment','PPE','Surface Prep'],
+    why:'Remove panels, trim, and parts that need protection or replacement.' },
+  { id:'repair',       num:4, name:'Panel / Plastic Repair', icon:'🔧', color:'#f5a623', defaultMin:60, bMin:30, bMax:90,
+    modules:['Sanding','Bonding & Sealing','PPE','Surface Prep','Workshop & Equipment'],
+    why:'Highest time variability — straightening, filling, and shaping.' },
+  { id:'prepzone',     num:5, name:'Preparation Zone',       icon:'📐', color:'#4caf50', defaultMin:90, bMin:60, bMax:120,
+    modules:['UV Fast Curing','Putties','Sanding','PPE','Surface Prep','Masking','Technical Sprays'],
+    why:'Most time-intensive stage. Sanding and masking drive most of the cost.' },
+  { id:'paint',        num:6, name:'Paint Application',      icon:'🎨', color:'#e91e8c', defaultMin:67, bMin:45, bMax:90,
+    modules:['Masking','Paint Preparation','PPE','Surface Prep','Technical Sprays'],
+    why:'Spray booth time is the binding constraint for most workshops.' },
+  { id:'correction',   num:7, name:'Paint Correction',       icon:'✨', color:'#00bcd4', defaultMin:30, bMin:15, bMax:45,
+    modules:['Polishing & Paint Correction','PPE','Sanding','Surface Prep'],
+    why:'Final finish quality — defect removal and gloss correction.' },
+  { id:'assembly',     num:8, name:'Assembly & Cleaning',    icon:'🔄', color:'#0078A9', defaultMin:27, bMin:15, bMax:40,
+    modules:['Workshop & Equipment','PPE','Surface Prep','Polishing & Paint Correction'],
+    why:'Refit all parts, final clean, and quality check before handover.' },
+  { id:'supporting',   num:9, name:'Supporting Processes',   icon:'🏭', color:'#6b7280', defaultMin:12, bMin:5,  bMax:20,
+    modules:['Spraybooth Maintenance','Mixing Room','HCV'],
+    why:'Booth cleaning, mixing room upkeep, and overhead processes.' },
+];
+
+// Map EMM products to bodyshop steps
+const STEP_PRODUCTS = {
+  inspection:  ['Fine Dust Mask P2 with Valve','Overall BodyGuard'],
+  cleaning:    ['Non Woven Degreasing Wipes','Tack Cloth Waterbased','One Step Ready & Adv. Cut'],
+  disassembly: ['Non Woven Degreasing Wipes','Black Nitrile Gloves','Overall BodyGuard'],
+  repair:      ['Velcro Discs 150mm','Sanding sponges & fibre','Non Woven Degreasing Wipes','Black Nitrile Gloves'],
+  prepzone:    ['Velcro Discs 150mm','Sanding sponges & fibre','Aqua Dynamic Masking Tape','Masking Film 6375','Masking Film 6340300','Foam Masking Tape','Non Woven Degreasing Wipes','Fine Dust Mask P2 with Valve','Disposable Respirator'],
+  paint:       ['Aqua Dynamic Masking Tape','Masking Paper 37cm','Stegoband','Mixing Cups 1400ml','Snaplid & Turbomix','Fine Dust Mask P2 with Valve','Non Woven Degreasing Wipes'],
+  correction:  ['One Step Ready & Adv. Cut','Clean Pads','Polishing Cloths','Tack Cloth Waterbased','Fine Dust Mask P2 with Valve'],
+  assembly:    ['Non Woven Degreasing Wipes','Black Nitrile Gloves','One Step Ready & Adv. Cut','Polishing Cloths'],
+  supporting:  ['Stick&Go','Anti-dust','Dust-control'],
+};
+
+// ══════════════════════════════════════════════
+// ROLE & BENCHMARK HELPERS
+// ══════════════════════════════════════════════
+function selectRole(role) {
+  userRole = role;
+  saveForm();
+  ['bodyshop','rep'].forEach(r => {
+    document.getElementById('role-' + r)?.classList.toggle('selected', r === role);
+  });
+  const desc = document.getElementById('step1-role-desc');
+  if (desc) {
+    if (role === 'bodyshop') desc.textContent = 'Enter your workshop details to see where you lose time and money.';
+    else if (role === 'rep')  desc.textContent = "Enter your customer's workshop details to calculate the full ROI of EMM products.";
+  }
+}
+
+function getStepMin(stepId) {
+  const el = document.getElementById('step_min_' + stepId);
+  const v  = el ? parseFloat(el.value) : NaN;
+  const s  = BODYSHOP_STEPS.find(x => x.id === stepId);
+  return (!isNaN(v) && v > 0) ? v : (s ? s.defaultMin : 0);
+}
+
+function getTotalStepMinutes() {
+  return BODYSHOP_STEPS.reduce((sum, s) => sum + getStepMin(s.id), 0);
+}
+
+function getHoursPerDay()  { const v = getNum('hours_per_day');  return (v && v > 0) ? v : 8; }
+function getFTEHours()     { const v = getNum('fte_hours_year'); return (v && v > 0) ? v : 1800; }
+
+function toggleStepOverrides() {
+  const sec   = document.getElementById('step-overrides-section');
+  const arrow = document.getElementById('step-overrides-arrow');
+  const isOpen = sec.style.display !== 'none';
+  sec.style.display = isOpen ? 'none' : 'block';
+  arrow.style.transform = isOpen ? '' : 'rotate(90deg)';
+}
+
+// ══════════════════════════════════════════════
+// RENDER STEP 3 — BODYSHOP 9-STEP VIEW
+// ══════════════════════════════════════════════
+function renderStep3Bodyshop() {
+  const vol = engineResults?.results?.actual_repairs_completed || 0;
+  const totalMin = getTotalStepMinutes();
+  const totalCost = 21.85;
+  const annualCost = totalCost * vol;
+
+  // Summary bar
+  document.getElementById('bs-summary').innerHTML = `
+    <div class="bs-sum-item"><div class="bs-sum-label">Total process time</div><div class="bs-sum-val">${(totalMin/60).toFixed(1)}h</div></div>
+    <div class="bs-sum-div"></div>
+    <div class="bs-sum-item"><div class="bs-sum-label">Non-paint cost / repair</div><div class="bs-sum-val">€${totalCost.toFixed(2)}</div></div>
+    <div class="bs-sum-div"></div>
+    <div class="bs-sum-item"><div class="bs-sum-label">Annual non-paint cost</div><div class="bs-sum-val green">€${Math.round(annualCost).toLocaleString('nl-NL')}</div></div>
+    <div class="bs-sum-div"></div>
+    <div class="bs-sum-item"><div class="bs-sum-label">Repairs / year</div><div class="bs-sum-val">${vol.toLocaleString('nl-NL')}</div></div>`;
+
+  // 9-step workflow grid
+  const STEP_COSTS_CORRECT = { inspection:0.55, cleaning:1.07, disassembly:0.54, repair:5.62, prepzone:6.50, paint:4.88, correction:1.22, assembly:0.74, supporting:0.73 };
+  const maxMin = Math.max(...BODYSHOP_STEPS.map(s => getStepMin(s.id)));
+  document.getElementById('bs-stage-grid').innerHTML = BODYSHOP_STEPS.map(s => {
+    const mins    = getStepMin(s.id);
+    const isOverride = (() => { const el = document.getElementById('step_min_' + s.id); return el && el.value && parseFloat(el.value) !== s.defaultMin; })();
+    const pct     = (mins / maxMin * 100).toFixed(0);
+    const prods   = (STEP_PRODUCTS[s.id] || []).map(name => PRODUCTS.find(p => p.name === name)).filter(Boolean);
+    const srcBadge = isOverride
+      ? '<span class="bs-override-badge">your input</span>'
+      : '<span class="bs-bench-badge">benchmark</span>';
+    const prodItems = prods.map(p => `
+      <div class="bs-wf-prod-item">
+        <span class="bs-wf-prod-brand">${p.brand}</span>
+        <span style="flex:1;font-size:11px">${p.name}</span>
+        <span class="bs-wf-prod-cost">€${p.cost_repair.toFixed(2)}</span>
+      </div>`).join('');
+    const emmCost = STEP_COSTS_CORRECT[s.id] || 0;
+    return `<div class="bs-workflow-card" style="border-top-color:${s.color}">
+      <div class="bs-wf-head">
+        <div class="bs-wf-num" style="background:${s.color}">${s.num}</div>
+        <div class="bs-wf-name">${s.name}</div>
+        <div class="bs-wf-icon">${s.icon}</div>
+      </div>
+      <div class="bs-wf-time">
+        <div class="bs-wf-time-val">${mins}</div>
+        <div class="bs-wf-time-unit">min ${srcBadge}</div>
+        <div class="bs-wf-time-range">${s.bMin}–${s.bMax}</div>
+      </div>
+      <div class="bs-wf-bar"><div class="bs-wf-bar-fill" style="width:${pct}%;background:${s.color}"></div></div>
+      <div class="bs-wf-modules">${s.modules.map(m => `<span class="bs-wf-module">${m}</span>`).join('')}</div>
+      <div class="bs-step-compare">
+        <div class="bs-step-compare-row">
+          <span class="bs-step-compare-label">EMM material cost/repair</span>
+          <span class="bs-step-compare-val">€${emmCost.toFixed(2)}</span>
+        </div>
+        <div class="bs-step-compare-row">
+          <span class="bs-step-compare-label" style="font-size:10px">Your current cost/repair</span>
+          <input class="bs-step-cost-input" type="number" min="0" step="0.01"
+            id="bs-cost-${s.id}" placeholder="€"
+            oninput="this.dataset.manual='true';updateBsStepComparison()">
+        </div>
+        <div class="bs-step-saving" id="bs-saving-${s.id}" style="display:none">—</div>
+      </div>
+      ${prods.length ? `
+      <div class="bs-wf-products">
+        <button class="bs-wf-prod-toggle" onclick="toggleWfProds('wfp-${s.id}',this)">
+          📦 ${prods.length} product${prods.length>1?'s':''} <span>▶</span>
+        </button>
+        <div class="bs-wf-prod-list" id="wfp-${s.id}">${prodItems}</div>
+      </div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+
+// ══════════════════════════════════════════════
+// MONTHLY/ANNUAL SPEND DISTRIBUTION
+// ══════════════════════════════════════════════
+const STEP_COST_PROPORTIONS = {
+  inspection:  0.55  / 21.85,
+  cleaning:    1.07  / 21.85,
+  disassembly: 0.54  / 21.85,
+  repair:      5.62  / 21.85,
+  prepzone:    6.50  / 21.85,
+  paint:       4.88  / 21.85,
+  correction:  1.22  / 21.85,
+  assembly:    0.74  / 21.85,
+  supporting:  0.73  / 21.85,
+};
+
+function distributeMonthlySpend() {
+  const monthly = parseFloat(document.getElementById('bs-monthly-spend')?.value);
+  if (isNaN(monthly) || monthly <= 0) { clearBsSpend(); return; }
+  const repairs = engineResults?.results?.actual_repairs_completed || 1;
+  const annualTotal = monthly * 12;
+  // Sync annual field
+  const annualEl = document.getElementById('bs-annual-spend');
+  if (annualEl) annualEl.value = Math.round(annualTotal);
+  _distributeTotalSpend(annualTotal, repairs);
+}
+
+function distributeAnnualSpend() {
+  const annual = parseFloat(document.getElementById('bs-annual-spend')?.value);
+  if (isNaN(annual) || annual <= 0) { clearBsSpend(); return; }
+  const repairs = engineResults?.results?.actual_repairs_completed || 1;
+  // Sync monthly field
+  const monthEl = document.getElementById('bs-monthly-spend');
+  if (monthEl) monthEl.value = (annual / 12).toFixed(0);
+  _distributeTotalSpend(annual, repairs);
+}
+
+function _distributeTotalSpend(annualTotal, repairs) {
+  const perRepair = annualTotal / repairs;
+  // Option 2: keep manually-entered steps, redistribute remainder across unfilled
+  let bsManualTotal = 0, bsRemainingProp = 0;
+  BODYSHOP_STEPS.forEach(s => {
+    const el = document.getElementById('bs-cost-' + s.id);
+    if (!el) return;
+    if (el.dataset.manual === 'true' && el.value && !isNaN(parseFloat(el.value))) {
+      bsManualTotal += parseFloat(el.value);
+    } else {
+      bsRemainingProp += (STEP_COST_PROPORTIONS[s.id] || 0);
+    }
+  });
+  const bsRemainder = Math.max(0, perRepair - bsManualTotal);
+  BODYSHOP_STEPS.forEach(s => {
+    const el = document.getElementById('bs-cost-' + s.id);
+    if (!el) return;
+    if (el.dataset.manual === 'true' && el.value && !isNaN(parseFloat(el.value))) return; // keep manual
+    const prop = bsRemainingProp > 0 ? (STEP_COST_PROPORTIONS[s.id] || 0) / bsRemainingProp : 0;
+    el.value = (bsRemainder * prop).toFixed(2);
+  });
+  // Show note
+  const note = document.getElementById('bs-spend-note');
+  if (note) {
+    const emmTotal = 21.85;
+    const diff = perRepair - emmTotal;
+    note.style.display = 'block';
+    note.innerHTML = diff > 0.10
+      ? `✓ Distributed €${perRepair.toFixed(2)}/repair across 9 steps. You spend <strong>€${diff.toFixed(2)} more</strong> per repair than EMM — potential annual saving: <strong>€${Math.round(diff * repairs).toLocaleString('nl-NL')}</strong>`
+      : diff < -0.10
+      ? `✓ Distributed €${perRepair.toFixed(2)}/repair across 9 steps. You spend <strong>€${Math.abs(diff).toFixed(2)} less</strong> per repair than EMM — your products may be cheaper but check quality.`
+      : `✓ Distributed €${perRepair.toFixed(2)}/repair across 9 steps. Your current spend is <strong>similar to EMM pricing</strong>.`;
+    note.style.background  = diff > 0.10 ? '#e8f5e9' : diff < -0.10 ? '#fff8e1' : '#e6f3f9';
+    note.style.borderColor = diff > 0.10 ? '#a5d6a7' : diff < -0.10 ? '#fde68a' : '#0078A9';
+    note.style.color       = diff > 0.10 ? '#2e7d32' : diff < -0.10 ? '#92400e' : '#005a82';
+  }
+  updateBsStepComparison();
+}
+
+function clearBsSpend() {
+  const monthEl = document.getElementById('bs-monthly-spend');
+  const annualEl = document.getElementById('bs-annual-spend');
+  if (monthEl) monthEl.value = '';
+  if (annualEl) annualEl.value = '';
+  BODYSHOP_STEPS.forEach(s => {
+    const el = document.getElementById('bs-cost-' + s.id);
+    if (el) { el.value = ''; el.dataset.manual = ''; }
+  });
+  const note = document.getElementById('bs-spend-note');
+  if (note) note.style.display = 'none';
+  const bar = document.getElementById('bs-compare-summary');
+  if (bar) bar.classList.remove('visible');
+  BODYSHOP_STEPS.forEach(s => {
+    const savEl = document.getElementById('bs-saving-' + s.id);
+    if (savEl) savEl.style.display = 'none';
+  });
+}
+
+function updateBsStepComparison() {
+  const STEP_COSTS_REF = { inspection:0.55, cleaning:1.07, disassembly:0.54, repair:5.62, prepzone:6.50, paint:4.88, correction:1.22, assembly:0.74, supporting:0.73 };
+  const repairs = engineResults?.results?.actual_repairs_completed || 0;
+  let totalSaving = 0, anyFilled = false, stepsWithSaving = 0;
+
+  BODYSHOP_STEPS.forEach(s => {
+    const el = document.getElementById('bs-cost-' + s.id);
+    const savEl = document.getElementById('bs-saving-' + s.id);
+    if (!el || !savEl) return;
+    const val = parseFloat(el.value);
+    const emmCost = STEP_COSTS_REF[s.id] || 0;
+    if (!isNaN(val) && el.value !== '') {
+      anyFilled = true;
+      const diff   = val - emmCost;   // positive = client spends more = saving
+      const annual = diff * repairs;
+      totalSaving += diff;
+      if (diff > 0.01) stepsWithSaving++;
+      savEl.style.display = 'block';
+      savEl.className = 'bs-step-saving' + (diff < -0.01 ? ' loss' : '');
+      savEl.textContent = diff > 0.01
+        ? `💚 Save €${diff.toFixed(2)}/repair · €${Math.round(annual).toLocaleString('nl-NL')}/year`
+        : diff < -0.01
+        ? `⚠ €${Math.abs(diff).toFixed(2)} more than EMM`
+        : `≈ Same as EMM`;
+    } else {
+      savEl.style.display = 'none';
+    }
+  });
+
+  // Show/update summary bar
+  const bar = document.getElementById('bs-compare-summary');
+  if (!bar) return;
+  if (anyFilled) {
+    bar.classList.add('visible');
+    bar.innerHTML = `
+      <div class="bs-sum-item"><div class="bs-sum-label">Total saving / repair</div><div class="bs-sum-val ${totalSaving > 0 ? 'green' : ''}">€${totalSaving.toFixed(2)}</div></div>
+      <div class="bs-sum-div"></div>
+      <div class="bs-sum-item"><div class="bs-sum-label">Annual saving</div><div class="bs-sum-val ${totalSaving > 0 ? 'green' : ''}">€${Math.round(totalSaving * repairs).toLocaleString('nl-NL')}</div></div>
+      <div class="bs-sum-div"></div>
+      <div class="bs-sum-item"><div class="bs-sum-label">Steps with savings</div><div class="bs-sum-val">${stepsWithSaving} / ${BODYSHOP_STEPS.length}</div></div>
+      <div style="margin-left:auto">
+        <button class="btn btn-success" onclick="applyBsStepComparison()" style="font-size:13px">See Full Impact →</button>
+      </div>`;
+  } else {
+    bar.classList.remove('visible');
+  }
+}
+
+function applyBsStepComparison() {
+  // Convert bodyshop step costs to a total and pass to engine as Mode B
+  const STEP_COSTS_REF = { inspection:0.55, cleaning:1.07, disassembly:0.54, repair:5.62, prepzone:6.50, paint:4.88, correction:1.22, assembly:0.74, supporting:0.73 };
+  let totalEMM = 0, totalCurrent = 0, anyFilled = false;
+  BODYSHOP_STEPS.forEach(s => {
+    const val = parseFloat(document.getElementById('bs-cost-' + s.id)?.value);
+    totalEMM += STEP_COSTS_REF[s.id] || 0;
+    if (!isNaN(val) && val > 0) { totalCurrent += val; anyFilled = true; }
+    else totalCurrent += STEP_COSTS_REF[s.id] || 0;
+  });
+  const payload = buildPayload();
+  payload.company_product_usage_per_repair = 1;
+  payload.company_product_price_per_unit   = totalEMM;
+  if (anyFilled) {
+    payload.user_product_usage_per_repair = 1;
+    payload.user_product_price_per_unit   = totalCurrent;
+  }
+  payload.improvement_factor = 1.2;
+  payload.investment_cost    = 0;
+
+  const btn = event.target;
+  btn.disabled = true; btn.textContent = 'Calculating...';
+  fetch('/api/calculate', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
+    .then(r => r.json())
+    .then(json => {
+      if (!json.ok) throw new Error(json.error);
+      engineResults = json.data;
+      renderStep4(); renderStep5();
+      goTo(3);
+    })
+    .catch(e => alert('Calculation error: ' + e.message))
+    .finally(() => { btn.disabled = false; btn.textContent = 'See Full Impact →'; });
+}
+
+function toggleWfProds(id, btn) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const isOpen = el.classList.toggle('open');
+  btn.querySelector('span').textContent = isOpen ? '▼' : '▶';
+}
+
+// ══════════════════════════════════════════════
+// RENDER STEP 4 — BODYSHOP SIMPLIFIED
+// ══════════════════════════════════════════════
+function renderStep4Bodyshop() {
+  const r   = engineResults.results;
+  const inp = engineResults.inputs_used;
+  const vol = r.actual_repairs_completed;
+  const cycleT  = inp.current_cycle_time_per_repair ?? 7.5;
+  const labFrac = inp.labour_fraction ?? (5.5/7.5);
+  const savEst  = r.financial_savings_per_year ?? ((cycleT - cycleT/1.2)*labFrac*vol*inp.labour_cost_per_hour);
+  const totalNP = 21.85 * vol;
+  const bn      = r.bottleneck_process?.join(' + ') || '—';
+  const uc      = r.utilisation < 0.70 ? 'Underutilised' : r.utilisation <= 0.90 ? 'Well balanced' : 'Running hot';
+  const gap     = r.capacity_gap;
+  document.getElementById('bs4-hero').innerHTML = `
+    <div>
+      <div class="bs-result-eye">Your savings potential</div>
+      <div class="bs-result-savings">€${Math.round(savEst).toLocaleString('nl-NL')}</div>
+      <div class="bs-result-savings-sub">estimated per year with a 20% process improvement</div>
+    </div>
+    <div class="bs-result-stat"><div class="bs-result-stat-val">€21.85</div><div class="bs-result-stat-label">non-paint materials per repair</div></div>
+    <div class="bs-result-stat"><div class="bs-result-stat-val">€${Math.round(totalNP).toLocaleString('nl-NL')}</div><div class="bs-result-stat-label">total non-paint cost per year</div></div>`;
+  const insights = [
+    { icon:'⚠️', title:'Your biggest constraint', text:`The <strong>${bn}</strong> stage limits how many repairs you can do. Improving it has the biggest impact.`, val:`${Math.round(r.system_throughput_per_year).toLocaleString('nl-NL')} repairs/year max` },
+    { icon:'👥', title:'How busy is your team?', text:`Your workshop runs at <strong>${(r.utilisation*100).toFixed(0)}%</strong> labour utilisation — ${uc.toLowerCase()}.`, val:uc },
+    { icon:'📈', title: gap >= 0 ? 'Room to grow' : 'Over capacity', text: gap >= 0 ? `You have <strong>${Math.round(gap).toLocaleString('nl-NL')} repairs</strong> of spare capacity — you can grow without adding staff.` : `You are handling <strong>${Math.round(Math.abs(gap)).toLocaleString('nl-NL')} more repairs</strong> than the system can comfortably manage.`, val: gap >= 0 ? '+'+Math.round(gap).toLocaleString('nl-NL')+' repairs available' : Math.round(Math.abs(gap)).toLocaleString('nl-NL')+' over capacity' },
+    (() => {
+      const slowestStep = BODYSHOP_STEPS.reduce((max, s) => getStepMin(s.id) > getStepMin(max.id) ? s : max, BODYSHOP_STEPS[0]);
+      const totalMin    = getTotalStepMinutes();
+      return { icon:'⏱', title:'Time per repair',
+        text:`Each repair takes <strong>${(totalMin/60).toFixed(1)} hours</strong> across all 9 process steps. <strong>${slowestStep.name}</strong> takes up the most time at ${getStepMin(slowestStep.id)} min.`,
+        val:`${Math.round(totalMin)} min per repair` };
+    })(),
+  ];
+  // ── Adaptive recommendation based on actual scenario ──────────────────────
+  const advice = (() => {
+    const util     = r.utilisation;
+    const boothUtil= r.booth_utilisation;
+    const gapAbs   = Math.abs(gap);
+    const savK     = Math.round(savEst / 1000);
+
+    // Scenario 1: Over capacity + booth bottleneck
+    if (gap < 0 && bn.includes('Booth')) {
+      return { icon:'🏭', title:'Priority action: Add booth capacity',
+        text:`Your booth is limiting you to ${Math.round(r.system_throughput_per_year)} repairs/year but you\'re doing ${vol}. Adding a booth or reducing booth cycle time has the highest ROI.`,
+        val:'Booth is your #1 constraint' };
+    }
+    // Scenario 2: Over capacity + labour bottleneck
+    if (gap < 0 && (bn.includes('Prep') || bn.includes('Paint'))) {
+      return { icon:'👷', title:'Priority action: Hire or improve efficiency',
+        text:`You\'re ${Math.round(gapAbs)} repairs over your team's capacity. Hiring one worker or improving process speed with better products would unlock that capacity.`,
+        val:`${Math.round(gapAbs)} repairs over limit` };
+    }
+    // Scenario 3: Underutilised — lots of spare capacity
+    if (util < 0.60) {
+      return { icon:'📣', title:'You have room to grow',
+        text:`Your team is only at ${Math.round(util*100)}% utilisation. You can take on <strong>${Math.round(gap)} more repairs per year</strong> without hiring. Focus on sales and marketing.`,
+        val:`${Math.round(gap)} repairs available` };
+    }
+    // Scenario 4: Well balanced + savings opportunity
+    if (util >= 0.70 && util <= 0.90 && savEst > 5000) {
+      return { icon:'💡', title:`Save €${savK}k/year with better products`,
+        text:`Your workshop runs well but your materials cost could be optimised. Switching to EMM products could save <strong>€${Math.round(savEst).toLocaleString('nl-NL')}/year</strong> — that's worth reviewing.`,
+        val:`€${Math.round(savEst).toLocaleString('nl-NL')} potential saving` };
+    }
+    // Scenario 5: Running hot but manageable
+    if (util > 0.90 && util < 1.05) {
+      return { icon:'⚡', title:'You\'re running near full capacity',
+        text:`At ${Math.round(util*100)}% utilisation your team has very little slack. Even small process improvements with better products free up time and reduce stress on the floor.`,
+        val:'Near capacity — optimise process' };
+    }
+    // Default
+    return { icon:'📊', title:'Review your process steps',
+      text:`Use the detailed breakdown above to identify which steps take the most time and cost. Small improvements in the heaviest steps compound quickly across ${vol} repairs/year.`,
+      val:`${vol} repairs · €${Math.round(21.85*vol).toLocaleString('nl-NL')} material cost/year` };
+  })();
+  insights.push(advice);
+
+  document.getElementById('bs4-insights').innerHTML = insights.map((ins, idx) => `
+    <div class="bs-insight" style="${idx === insights.length - 1 && insights.length % 2 !== 0 ? 'grid-column:1/-1;background:var(--ppg-pale);border-color:var(--ppg)' : ''}">
+      <div class="bs-insight-icon">${ins.icon}</div>
+      <div><div class="bs-insight-title">${ins.title}</div><div class="bs-insight-text">${ins.text}</div><div class="bs-insight-val">${ins.val}</div></div>
+    </div>`).join('');
+  const procData = [
+    { name:'Sanding & Surface', cost:8.694, color:'#4caf50' },
+    { name:'Masking',           cost:6.396, color:'#7b3fa0' },
+    { name:'Paint Preparation', cost:3.900, color:'#00bcd4' },
+    { name:'Personal Protection',cost:1.375,color:'#f5a623' },
+    { name:'Spraybooth Maint.', cost:0.877, color:'#0078A9' },
+    { name:'Polishing',         cost:0.610, color:'#e91e8c' },
+  ];
+  // Step 4 cost breakdown — 9 bodyshop steps for bodyshop role
+  // Step costs — proportionally distributed, total = €21.85
+  const STEP_COSTS_S4 = { inspection:0.55, cleaning:1.07, disassembly:0.54, repair:5.62, prepzone:6.50, paint:4.88, correction:1.22, assembly:0.74, supporting:0.73 };
+  const maxStepCost = Math.max(...Object.values(STEP_COSTS_S4));
+  document.getElementById('bs4-breakdown').innerHTML = BODYSHOP_STEPS.map(s => {
+    const cost = STEP_COSTS_S4[s.id] || 0;
+    const pct  = cost > 0 ? (cost / maxStepCost * 100).toFixed(0) : '0';
+    const mins = getStepMin(s.id);
+    return `<div class="bs-cost-row">
+      <div class="bs-cost-dot" style="background:${s.color}"></div>
+      <div class="bs-cost-name" style="width:180px">${s.num}. ${s.name}</div>
+      <div class="bs-cost-track"><div class="bs-cost-fill" style="width:${pct}%;background:${s.color}"></div></div>
+      <div style="font-size:11px;color:var(--muted);width:50px;text-align:right;flex-shrink:0">${mins}min</div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════
+// RENDER STEP 5 — BODYSHOP CTA
+// ══════════════════════════════════════════════
+function renderStep5Bodyshop() {
+  const r   = engineResults.results;
+  const inp = engineResults.inputs_used;
+  const vol = r.actual_repairs_completed;
+  const cycleT  = inp.current_cycle_time_per_repair ?? 7.5;
+  const labFrac = inp.labour_fraction ?? (5.5/7.5);
+  const savEst  = r.financial_savings_per_year ?? ((cycleT - cycleT/1.2)*labFrac*vol*inp.labour_cost_per_hour);
+  const bn      = r.bottleneck_process?.join(' + ') || '—';
+  document.getElementById('bs5-result-bar').innerHTML = `
+    <div class="bs-sum-item"><div class="bs-sum-label">Savings potential / year</div><div class="bs-sum-val green">€${Math.round(savEst).toLocaleString('nl-NL')}</div></div>
+    <div class="bs-sum-div"></div>
+    <div class="bs-sum-item"><div class="bs-sum-label">Non-paint cost / repair</div><div class="bs-sum-val">€21.85</div></div>
+    <div class="bs-sum-div"></div>
+    <div class="bs-sum-item"><div class="bs-sum-label">Bottleneck stage</div><div class="bs-sum-val" style="font-size:16px">${bn}</div></div>
+    <div class="bs-sum-div"></div>
+    <div class="bs-sum-item"><div class="bs-sum-label">Repairs / year</div><div class="bs-sum-val">${vol.toLocaleString('nl-NL')}</div></div>`;
+}
+
+
+// ══════════════════════════════════════════════
+// FORM PERSISTENCE — save inputs to localStorage
+// ══════════════════════════════════════════════
+const SAVE_FIELDS = [
+  'repairs_per_year','preparation_workers','spray_painters','amount_spraybooths',
+  'labour_cost_per_hour','working_days_per_year','hours_per_day','fte_hours_year',
+  'average_preparation_time_per_repair','average_paint_time_per_repair',
+  'average_booth_cycle_time_per_repair',
+  'step_min_inspection','step_min_cleaning','step_min_disassembly','step_min_repair',
+  'step_min_prepzone','step_min_paint','step_min_correction','step_min_assembly','step_min_supporting'
+];
+
+function saveForm() {
+  try {
+    const data = {};
+    SAVE_FIELDS.forEach(f => {
+      const el = document.getElementById(f);
+      if (el && el.value) data[f] = el.value;
+    });
+    if (userRole) data._role = userRole;
+    localStorage.setItem('bs_form', JSON.stringify(data));
+  } catch(e) { /* localStorage not available */ }
+}
+
+function restoreForm() {
+  try {
+    const raw = localStorage.getItem('bs_form');
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    SAVE_FIELDS.forEach(f => {
+      const el = document.getElementById(f);
+      if (el && data[f]) el.value = data[f];
+    });
+    if (data._role) selectRole(data._role);
+    const hasData = SAVE_FIELDS.some(f => data[f]);
+    if (hasData) {
+      const notice = document.getElementById('restore-notice');
+      if (notice) notice.style.display = 'flex';
+    }
+  } catch(e) { /* localStorage not available */ }
+}
+
+function clearSavedForm() {
+  try { localStorage.removeItem('bs_form'); } catch(e) {}
+  const notice = document.getElementById('restore-notice');
+  if (notice) notice.style.display = 'none';
 }
 
 function toggleAdv() {
@@ -2210,15 +2932,34 @@ function validate() {
 }
 
 function buildPayload() {
+  // Resolve capacity inputs — derive available hours from user inputs
+  const workingDays  = getNum('working_days_per_year') || 240;
+  const hoursPerDay  = getHoursPerDay();           // default 8
+  const fteHoursYear = getFTEHours();              // default 1800
+  const labEffFactor = 0.85;                       // fixed efficiency factor
+  // labour_available_hours = working_days × hours_per_day × efficiency_factor
+  const labourAvailHours = workingDays * hoursPerDay * labEffFactor;
+  // booth_available_hours  = working_days × hours_per_day (no efficiency loss on booth)
+  const boothAvailHours  = workingDays * hoursPerDay;
+
   const payload = {
-    repairs_per_year:    getNum('repairs_per_year'),
-    preparation_workers: getNum('preparation_workers'),
-    spray_painters:      getNum('spray_painters'),
-    amount_spraybooths:  getNum('amount_spraybooths'),
-    labour_cost_per_hour: getNum('labour_cost_per_hour') || 45,
+    repairs_per_year:        getNum('repairs_per_year'),
+    preparation_workers:     getNum('preparation_workers'),
+    spray_painters:          getNum('spray_painters'),
+    amount_spraybooths:      getNum('amount_spraybooths'),
+    labour_cost_per_hour:    getNum('labour_cost_per_hour') || 45,
+    working_days_per_year:   workingDays,
+    // Pass derived available hours so engine uses correct capacity
+    labour_available_hours:  labourAvailHours,
+    booth_available_hours:   boothAvailHours,
+    // FTE hours — correct field name matching engine
+    fte_hours_per_year:      fteHoursYear,
+    _role: userRole,
+    step_minutes: Object.fromEntries(BODYSHOP_STEPS.map(s => [s.id, getStepMin(s.id)])),
   };
-  ['working_days_per_year','average_preparation_time_per_repair',
-   'average_paint_time_per_repair','average_booth_cycle_time_per_repair'].forEach(f => {
+  ['average_preparation_time_per_repair',
+   'average_paint_time_per_repair','average_booth_cycle_time_per_repair',
+   'user_product_usage_per_repair','user_product_price_per_unit'].forEach(f => {
     const v = getNum(f); if (v !== undefined) payload[f] = v;
   });
   // Mode B fields
@@ -2233,7 +2974,7 @@ function buildPayload() {
 async function calculate() {
   if (!validate()) return;
   const btn = document.getElementById('calc-btn');
-  btn.disabled = true; btn.textContent = 'Calculating...';
+  btn.disabled = true; btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px"><span style="display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite"></span>Calculating…</span>';
   try {
     const res  = await fetch('/api/calculate', {
       method:'POST', headers:{'Content-Type':'application/json'},
@@ -2243,6 +2984,7 @@ async function calculate() {
     if (!json.ok) throw new Error(json.error);
     engineResults = json.data;
     renderStep2(); renderStep3(); renderStep4(); renderStep5();
+    saveForm();
     goTo(1);
   } catch(e) {
     showError('calc-error', e.message);
@@ -2433,6 +3175,117 @@ function renderStep2() {
                           inp.average_paint_time_per_repair !== 2.5 ||
                           inp.average_booth_cycle_time_per_repair !== 2;
 
+  // ── Role fork: bodyshop sees 9-step view, rep sees EMM module view ──
+  const costNote  = document.getElementById('cost-note');
+  const cardTitle = document.querySelector('#full-analysis-section .card-title');
+  if (userRole === 'bodyshop') {
+    if (costNote)  costNote.textContent  = 'Based on industry benchmark midpoints — override per step in Advanced Settings';
+    if (cardTitle) cardTitle.textContent = 'Process Time & Cost per Bodyshop Step';
+    // Bodyshop 9-step cost table
+    // Step costs — proportionally distributed, total = €21.85
+    const STEP_COST_MAP = {
+      inspection:  { cost: 0.55 },
+      cleaning:    { cost: 1.07 },
+      disassembly: { cost: 0.54 },
+      repair:      { cost: 5.62 },
+      prepzone:    { cost: 6.50 },
+      paint:       { cost: 4.88 },
+      correction:  { cost: 1.22 },
+      assembly:    { cost: 0.74 },
+      supporting:  { cost: 0.73 },
+    };
+    // Update thead for bodyshop — remove % column, optionally add saving column
+    const hasBsCosts = BODYSHOP_STEPS.some(s => {
+      const el = document.getElementById('bs-cost-' + s.id);
+      return el && el.value && parseFloat(el.value) > 0;
+    });
+    const thead = document.getElementById('cost-thead');
+    if (thead) {
+      thead.innerHTML = `<tr>
+        <th>Process step</th>
+        <th><span style="display:inline-flex;align-items:center;gap:4px"><span style="width:7px;height:7px;border-radius:50%;background:var(--amber);display:inline-block"></span> Time / repair</span>
+          <div style="font-size:9px;font-weight:400;color:var(--muted);margin-top:1px">benchmark midpoint</div></th>
+        <th class="amt">EMM cost / repair
+          <div style="font-size:9px;font-weight:400;color:var(--muted);margin-top:1px">materials only</div></th>
+        <th class="amt">Annual cost
+          <div style="font-size:9px;font-weight:400;color:var(--muted);margin-top:1px">at your volume</div></th>
+        ${hasBsCosts ? '<th class="amt">Your current<div style="font-size:9px;font-weight:400;color:var(--muted);margin-top:1px">from Step 3</div></th><th class="amt" style="color:var(--green)">You save / year<div style="font-size:9px;font-weight:400;color:var(--muted);margin-top:1px">vs EMM</div></th>' : ''}
+      </tr>`;
+    }
+
+    const stepRows = BODYSHOP_STEPS.map(s => {
+      const mins    = getStepMin(s.id);
+      const cost    = STEP_COST_MAP[s.id]?.cost || 0;
+      const isOvr   = (() => { const el = document.getElementById('step_min_' + s.id); return el && el.value && parseFloat(el.value) !== s.defaultMin; })();
+      const srcTag  = isOvr
+        ? `<span class="bs-override-badge">your input</span>`
+        : `<span class="bs-bench-badge">${s.bMin}–${s.bMax} min</span>`;
+
+      // Get current cost from Step 3 input if filled
+      const currentCostEl = document.getElementById('bs-cost-' + s.id);
+      const currentCost   = currentCostEl && currentCostEl.value ? parseFloat(currentCostEl.value) : null;
+      const saving        = currentCost !== null ? (currentCost - cost) * vol : null;
+
+      const savingCol = hasBsCosts
+        ? `<td class="amt" style="color:var(--muted)">${currentCost !== null ? eur2(currentCost) : '—'}</td>
+           <td class="amt" style="font-weight:700;color:${saving > 5 ? 'var(--green)' : saving < -5 ? 'var(--red)' : 'var(--muted)'}">
+             ${saving !== null ? (saving > 5 ? '+'+eur0(saving) : saving < -5 ? '-'+eur0(Math.abs(saving)) : '≈ same') : '—'}
+           </td>`
+        : '';
+
+      return `<tr>
+        <td><span style="display:inline-block;width:8px;height:8px;border-radius:1px;background:${s.color};margin-right:6px;vertical-align:middle"></span>${s.num}. ${s.name}</td>
+        <td>${mins} min ${srcTag}</td>
+        <td class="amt">${cost > 0 ? eur2(cost)+' <span style="font-size:9px;background:var(--ppg-light);color:var(--ppg);padding:1px 4px;border-radius:2px;font-weight:700">EMM</span>' : '—'}</td>
+        <td class="amt" style="font-weight:700">${cost > 0 ? eur0(cost*vol) : '—'}</td>
+        ${savingCol}
+      </tr>`;
+    });
+    const totalStepMin  = getTotalStepMinutes();
+    const totalCurrentCost = hasBsCosts
+      ? BODYSHOP_STEPS.reduce((sum, s) => {
+          const el = document.getElementById('bs-cost-' + s.id);
+          const v  = el && el.value ? parseFloat(el.value) : (STEP_COST_MAP[s.id]?.cost || 0);
+          return sum + v;
+        }, 0)
+      : null;
+    const totalSavingYear = totalCurrentCost !== null ? (totalCurrentCost - 21.85) * vol : null;
+
+    document.getElementById('cost-tbody').innerHTML = stepRows.join('');
+    document.getElementById('cost-tfoot').innerHTML =
+      `<td>Total</td>
+       <td>${totalStepMin} min (${(totalStepMin/60).toFixed(1)} hr)</td>
+       <td class="amt">${eur2(21.85)}</td>
+       <td class="amt" style="font-weight:700">${eur0(21.85*vol)}</td>
+       ${hasBsCosts ? `<td class="amt" style="color:var(--muted)">${totalCurrentCost !== null ? eur2(totalCurrentCost) : '—'}</td><td class="amt" style="font-weight:700;color:${totalSavingYear > 5 ? 'var(--green)' : 'var(--muted)'}">${totalSavingYear !== null ? (totalSavingYear > 5 ? '+'+eur0(totalSavingYear) : '≈ same') : '—'}</td>` : ''}`;
+    // Add time-saving context for bodyshop
+    const savingMin = Math.round(totalStepMin * 0.20);
+    const existingNote = document.getElementById('bs-time-saving-note');
+    if (!existingNote) {
+      const note = document.createElement('div');
+      note.id = 'bs-time-saving-note';
+      note.style.cssText = 'margin-top:10px;padding:10px 14px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:2px;font-size:12px;color:#2e7d32;display:flex;align-items:center;gap:8px';
+      note.innerHTML = `<span>💡</span><span>A <strong>20% improvement</strong> across all steps would save <strong>${savingMin} minutes per repair</strong> — that's ${(savingMin/60).toFixed(1)} hours back per vehicle.</span>`;
+      document.getElementById('cost-tbody').closest('table').parentNode.appendChild(note);
+    } else {
+      existingNote.querySelector('span:last-child').innerHTML = `A <strong>20% improvement</strong> across all steps would save <strong>${savingMin} minutes per repair</strong> — that's ${(savingMin/60).toFixed(1)} hours back per vehicle.`;
+    }
+  } else {
+    if (costNote)  costNote.textContent  = 'Based on EMM product data (Consumption Sheet 2026)';
+    if (cardTitle) cardTitle.textContent = 'Non-Paint Cost per Process Stage';
+    // Restore full thead for rep view
+    const repThead = document.getElementById('cost-thead');
+    if (repThead) {
+      repThead.innerHTML = `<tr>
+        <th>Process stage</th>
+        <th><span style="display:inline-flex;align-items:center;gap:4px"><span style="width:7px;height:7px;border-radius:50%;background:var(--amber);display:inline-block"></span> Minutes / repair</span>
+          <div style="font-size:9px;font-weight:400;color:var(--muted);margin-top:1px" id="th-times-src">industry benchmark</div></th>
+        <th class="amt">% of total cost<div style="font-size:9px;font-weight:400;color:var(--muted);margin-top:1px">share of €21.85/repair</div></th>
+        <th class="amt"><span style="display:inline-flex;align-items:center;gap:4px;justify-content:flex-end"><span style="width:7px;height:7px;border-radius:50%;background:var(--ppg);display:inline-block"></span> Cost / repair</span>
+          <div style="font-size:9px;font-weight:400;color:var(--muted);margin-top:1px">EMM 2026 data</div></th>
+        <th class="amt">Annual cost<div style="font-size:9px;font-weight:400;color:var(--muted);margin-top:1px">cost/repair × actual repairs</div></th>
+      </tr>`;
+    }
   document.getElementById('cost-tbody').innerHTML = PROC_DATA.map(p=>{
     totCost += p.cost; totMin += p.minutes;
     const mins = p.minutes<60 ? p.minutes+' min' : (p.minutes/60).toFixed(1)+' hr';
@@ -2461,6 +3314,7 @@ function renderStep2() {
   }).join('');
   document.getElementById('cost-tfoot').innerHTML =
     `<td>Total</td><td>${totMin.toFixed(0)} min (${(totMin/60).toFixed(2)} hr)</td><td class="amt">100%</td><td class="amt">${eur2(totCost)}</td><td class="amt">${eur2(totCost*vol)}</td>`;
+  } // end else (rep view cost table)
 
   // Sources
   const srcL = engineResults.data_sources?.labour_cost_per_hour;
@@ -2601,8 +3455,16 @@ const STAGE_EMM = PROC_DATA.map(p => ({
 }));
 
 function renderStep3() {
-  renderStageComparison();
-  renderProductsInStep3();
+  if (userRole === 'bodyshop') {
+    document.getElementById('s3-bodyshop-view').style.display = 'block';
+    document.getElementById('s3-rep-view').style.display      = 'none';
+    renderStep3Bodyshop();
+  } else {
+    document.getElementById('s3-bodyshop-view').style.display = 'none';
+    document.getElementById('s3-rep-view').style.display      = 'block';
+    renderStageComparison();
+    renderProductsInStep3();
+  }
 }
 
 function renderStageComparison() {
@@ -2623,29 +3485,44 @@ function renderStageComparison() {
       </div>`
     ).join('');
 
+    const emmTimeLabel = s.minutes < 60 ? s.minutes + ' min' : (s.minutes/60).toFixed(1) + ' hr';
     return `<tr class="sct-row" id="sct-row-${i}">
-      <td class="sct-main" colspan="6" style="padding:0">
+      <td class="sct-main" colspan="9" style="padding:0">
         <table style="width:100%;border-collapse:collapse">
           <tr class="sct-main" id="sct-main-${i}">
-            <td style="width:200px;padding:10px 12px">
+            <td style="width:180px;padding:10px 12px">
               <div class="sct-stage-cell">
                 <div class="sct-dot" style="background:${s.color}"></div>
                 <div>
                   <div class="sct-name">${s.stage}</div>
-                  <div class="sct-time">${s.minutes < 60 ? s.minutes + ' min' : (s.minutes/60).toFixed(1) + ' hr'} / repair</div>
+                  <div class="sct-time">${prods.length} product${prods.length!==1?'s':''}</div>
                 </div>
               </div>
             </td>
+            <td style="padding:10px 12px;text-align:right">
+              <div style="font-size:13px;font-weight:700;color:var(--ppg-deep)">${emmTimeLabel}</div>
+              <div style="font-size:10px;color:var(--muted)">EMM benchmark</div>
+            </td>
+            <td style="padding:10px 12px">
+              <input class="sct-time-input"
+                type="number" min="0" step="1"
+                id="sct-time-${i}"
+                placeholder="min"
+                oninput="updateStageComparison()"
+              >
+            </td>
+            <td style="padding:10px 12px">
+              <div class="sct-time-saved neutral" id="sct-tsaved-${i}">—</div>
+            </td>
             <td style="padding:10px 12px">
               <div class="sct-emm-val">€${s.emm_cost.toFixed(2)}</div>
-              <div class="sct-emm-hint">${prods.length} product${prods.length!==1?'s':''}</div>
             </td>
             <td style="padding:10px 12px">
               <input class="sct-current-input"
                 type="number" min="0" step="0.01"
                 id="sct-current-${i}"
-                placeholder="Enter your cost"
-                oninput="updateStageComparison()"
+                placeholder="€"
+                oninput="this.dataset.manual='true';this.dataset.distributed='';updateStageComparison()"
               >
             </td>
             <td style="padding:10px 12px">
@@ -2680,6 +3557,9 @@ function renderStageComparison() {
   // Footer totals row
   tfoot.innerHTML = `<tr>
     <td style="padding:10px 12px;font-weight:700;color:var(--ppg-deep);font-size:13px">Total</td>
+    <td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--ppg-deep)">${STAGE_EMM.reduce((s,x)=>s+x.minutes,0).toFixed(0)} min</td>
+    <td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--muted)" id="sct-total-time">—</td>
+    <td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--green)" id="sct-total-tsaved">—</td>
     <td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--ppg)">€${STAGE_EMM.reduce((s,x)=>s+x.emm_cost,0).toFixed(2)}</td>
     <td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--muted)" id="sct-total-current">—</td>
     <td style="padding:10px 12px;text-align:right;font-weight:700" id="sct-total-diff">—</td>
@@ -2696,17 +3576,133 @@ function toggleStageDetail(i) {
   btn.textContent = isOpen ? '▶ Products' : '▼ Products';
 }
 
+
+// ══════════════════════════════════════════════
+// REP STEP 3 — SPEND DISTRIBUTION
+// ══════════════════════════════════════════════
+const STAGE_COST_PROPORTIONS = {
+  'Spraybooth Maintenance': 0.877  / 21.852,
+  'Masking':                6.396  / 21.852,
+  'Sanding & Surface':      8.694  / 21.852,
+  'Paint Preparation':      3.900  / 21.852,
+  'Personal Protection':    1.375  / 21.852,
+  'Polishing':              0.610  / 21.852,
+};
+
+function distributeRepSpend(source) {
+  const monthlyEl = document.getElementById('rep-monthly-spend');
+  const annualEl  = document.getElementById('rep-annual-spend');
+  let annualTotal;
+  if (source === 'monthly') {
+    const v = parseFloat(monthlyEl?.value);
+    if (isNaN(v) || v <= 0) { clearRepSpend(); return; }
+    annualTotal = v * 12;
+    if (annualEl) annualEl.value = Math.round(annualTotal);
+  } else {
+    const v = parseFloat(annualEl?.value);
+    if (isNaN(v) || v <= 0) { clearRepSpend(); return; }
+    annualTotal = v;
+    if (monthlyEl) monthlyEl.value = (v / 12).toFixed(0);
+  }
+  const repairs = engineResults?.inputs_used?.repairs_per_year || 1;
+  const perRepair = annualTotal / repairs;
+
+  // Option 2: subtract manually-entered stages, redistribute remainder proportionally
+  // Step 1 — identify which cells are already manually filled
+  let manualTotal = 0;
+  let remainingPropTotal = 0;
+  STAGE_EMM.forEach((s, i) => {
+    const el = document.getElementById('sct-current-' + i);
+    if (!el) return;
+    const isManual = el.dataset.manual === 'true' && el.value && !isNaN(parseFloat(el.value));
+    if (isManual) {
+      manualTotal += parseFloat(el.value);
+    } else {
+      remainingPropTotal += (STAGE_COST_PROPORTIONS[s.stage] || 0);
+    }
+  });
+
+  // Step 2 — remaining budget to distribute across unfilled stages
+  const remainder = Math.max(0, perRepair - manualTotal);
+
+  // Step 3 — fill only non-manual cells proportionally from remainder
+  STAGE_EMM.forEach((s, i) => {
+    const el = document.getElementById('sct-current-' + i);
+    if (!el) return;
+    const isManual = el.dataset.manual === 'true' && el.value && !isNaN(parseFloat(el.value));
+    if (!isManual) {
+      const prop = remainingPropTotal > 0 ? (STAGE_COST_PROPORTIONS[s.stage] || 0) / remainingPropTotal : 0;
+      el.value = (remainder * prop).toFixed(2);
+      el.dataset.distributed = 'true';
+    }
+  });
+
+  // Show note
+  const note = document.getElementById('rep-spend-note');
+  if (note) {
+    const emmTotal = 21.85;
+    const diff = perRepair - emmTotal;
+    note.style.display = 'block';
+    if (diff > 0.10) {
+      note.style.cssText = 'display:block;padding:8px 12px;border-radius:2px;font-size:12px;background:#e8f5e9;border:1px solid #a5d6a7;color:#2e7d32';
+      const manualCount = STAGE_EMM.filter((_,i) => { const el = document.getElementById('sct-current-'+i); return el?.dataset.manual === 'true' && el.value; }).length;
+      const suffix = manualCount > 0 ? ` (${manualCount} stage${manualCount>1?'s':''} kept from manual input, remainder distributed)` : ' across all 6 stages';
+      note.innerHTML = `✓ €${perRepair.toFixed(2)}/repair${suffix}. Client spends <strong>€${diff.toFixed(2)} more</strong> per repair than EMM — potential saving: <strong>€${Math.round(diff * repairs).toLocaleString('nl-NL')}/year</strong>`;
+    } else if (diff < -0.10) {
+      note.style.cssText = 'display:block;padding:8px 12px;border-radius:2px;font-size:12px;background:#fff8e1;border:1px solid #fde68a;color:#92400e';
+      note.innerHTML = `✓ €${perRepair.toFixed(2)}/repair distributed. Client spends <strong>€${Math.abs(diff).toFixed(2)} less</strong> per repair than EMM — review product quality comparison.`;
+    } else {
+      note.style.cssText = 'display:block;padding:8px 12px;border-radius:2px;font-size:12px;background:#e6f3f9;border:1px solid #b3d9f0;color:#005a82';
+      note.innerHTML = `✓ €${perRepair.toFixed(2)}/repair distributed. Client spend is similar to EMM pricing.`;
+    }
+  }
+  updateStageComparison();
+}
+
+function clearRepSpend() {
+  const monthlyEl = document.getElementById('rep-monthly-spend');
+  const annualEl  = document.getElementById('rep-annual-spend');
+  if (monthlyEl) monthlyEl.value = '';
+  if (annualEl)  annualEl.value  = '';
+  STAGE_EMM.forEach((_, i) => {
+    const el = document.getElementById('sct-current-' + i);
+    if (el) { el.value = ''; el.dataset.manual = ''; el.dataset.distributed = ''; }
+  });
+  const note = document.getElementById('rep-spend-note');
+  if (note) note.style.display = 'none';
+  updateStageComparison();
+}
+
 function updateStageComparison() {
   const repairs = engineResults?.inputs_used?.repairs_per_year || 0;
+  const labourCost = engineResults?.inputs_used?.labour_cost_per_hour || 45;
   let totalEMM = 0, totalCurrent = 0, totalDiff = 0, totalAnnual = 0;
+  let totalTimeSaved = 0, totalClientTime = 0, anyTimeFilled = false;
   let anyFilled = false, stagesWithSaving = 0;
 
   STAGE_EMM.forEach((s, i) => {
-    const inp = document.getElementById('sct-current-' + i);
+    const inp    = document.getElementById('sct-current-' + i);
+    const timeIn = document.getElementById('sct-time-' + i);
     const diffEl   = document.getElementById('sct-diff-' + i);
     const annualEl = document.getElementById('sct-annual-' + i);
-    const val = parseFloat(inp?.value);
+    const tsavedEl = document.getElementById('sct-tsaved-' + i);
+    const val      = parseFloat(inp?.value);
+    const timeVal  = parseFloat(timeIn?.value);
     totalEMM += s.emm_cost;
+
+    // Time comparison
+    if (!isNaN(timeVal) && timeIn?.value !== '') {
+      anyTimeFilled = true;
+      totalClientTime += timeVal;
+      const tSaved = timeVal - s.minutes;
+      totalTimeSaved += tSaved;
+      if (tsavedEl) {
+        tsavedEl.textContent = tSaved > 0.5 ? '-' + tSaved.toFixed(0) + ' min' : tSaved < -0.5 ? '+' + Math.abs(tSaved).toFixed(0) + ' min slower' : '≈ same';
+        tsavedEl.className = 'sct-time-saved ' + (tSaved > 0.5 ? 'saving' : 'neutral');
+      }
+    } else {
+      if (tsavedEl) { tsavedEl.textContent = '—'; tsavedEl.className = 'sct-time-saved neutral'; }
+    }
 
     if (!isNaN(val) && inp?.value !== '') {
       anyFilled = true;
@@ -2729,27 +3725,38 @@ function updateStageComparison() {
   });
 
   // Update footer
-  const tc = document.getElementById('sct-total-current');
-  const td = document.getElementById('sct-total-diff');
-  const ta = document.getElementById('sct-total-annual');
+  const tc  = document.getElementById('sct-total-current');
+  const td  = document.getElementById('sct-total-diff');
+  const ta  = document.getElementById('sct-total-annual');
+  const tt  = document.getElementById('sct-total-time');
+  const tts = document.getElementById('sct-total-tsaved');
+  if (tt)  tt.textContent  = anyTimeFilled ? totalClientTime.toFixed(0) + ' min' : '—';
+  if (tts) { tts.textContent = anyTimeFilled ? (totalTimeSaved > 0 ? '-'+totalTimeSaved.toFixed(0)+' min saved' : totalTimeSaved < 0 ? '+'+Math.abs(totalTimeSaved).toFixed(0)+' min slower' : '≈ same') : '—'; tts.className = 'sct-diff ' + (totalTimeSaved > 0 ? 'saving' : totalTimeSaved < 0 ? 'loss' : 'neutral'); }
   if (tc) tc.textContent = anyFilled ? '€' + totalCurrent.toFixed(2) : '—';
   if (td) { td.textContent = anyFilled ? (totalDiff > 0 ? 'Save €' : totalDiff < 0 ? 'Costs €' : '—') + (totalDiff !== 0 ? Math.abs(totalDiff).toFixed(2) : '') : '—'; td.className = 'sct-diff ' + (totalDiff > 0 ? 'saving' : totalDiff < 0 ? 'loss' : 'neutral'); }
   if (ta) { ta.textContent = anyFilled ? (totalAnnual > 5 ? '+€' : totalAnnual < -5 ? '-€' : '—') + (Math.abs(totalAnnual) > 0 ? Math.abs(totalAnnual).toFixed(0) : '') : '—'; ta.className = 'sct-diff ' + (totalAnnual > 5 ? 'saving' : totalAnnual < -5 ? 'loss' : 'neutral'); }
 
-  // Savings bar
+  // Savings bar + improv fields
   const bar    = document.getElementById('savings-bar');
   const fields = document.getElementById('improv-fields');
   const note   = document.getElementById('mode-b-note');
   const breakdown = document.getElementById('mode-b-breakdown');
   if (anyFilled && bar) {
     bar.style.display = 'flex';
+    if (fields)    fields.style.display = 'grid';
     if (note)      note.style.display = 'none';
     if (breakdown) breakdown.style.display = 'block';
     document.getElementById('ssb-per-repair').textContent  = (totalDiff > 0 ? 'Save €' : totalDiff < 0 ? 'Costs €' : '€') + Math.abs(totalDiff).toFixed(2) + (totalDiff < 0 ? ' more/repair' : '/repair');
     document.getElementById('ssb-annual').textContent       = (totalAnnual > 0 ? '+€' : '-€') + Math.abs(totalAnnual).toFixed(0) + '/year';
     document.getElementById('ssb-stages').textContent       = stagesWithSaving + ' / ' + STAGE_EMM.length;
+    // Time saving summary
+    const ssbTime = document.getElementById('ssb-time');
+    if (ssbTime && anyTimeFilled) {
+      ssbTime.textContent = totalTimeSaved > 0 ? totalTimeSaved.toFixed(0) + ' min/repair saved' : '—';
+    }
   } else {
     if (bar)       bar.style.display = 'none';
+    if (fields)    fields.style.display = 'none';
     if (note)      note.style.display = 'block';
     if (breakdown) breakdown.style.display = 'none';
   }
@@ -2843,9 +3850,16 @@ function renderProductsInStep3() {
 // RENDER STEP 4 — RESULTS
 // ══════════════════════════════════════════════
 function renderStep4() {
+  if (userRole === 'bodyshop') {
+    document.getElementById('r4-bodyshop-view').style.display = 'block';
+    document.getElementById('r4-rep-view').style.display      = 'none';
+    renderStep4Bodyshop();
+    return;
+  }
+  document.getElementById('r4-bodyshop-view').style.display = 'none';
+  document.getElementById('r4-rep-view').style.display      = 'block';
   const r   = engineResults.results;
   const inp = engineResults.inputs_used;
-
   document.getElementById('results-sub').textContent =
     `Analysis for ${f0(inp.repairs_per_year)} repairs/year — Mode ${engineResults.mode}`;
 
@@ -2971,6 +3985,14 @@ function renderStep4() {
 // RENDER STEP 5 — EXPORT
 // ══════════════════════════════════════════════
 function renderStep5() {
+  if (userRole === 'bodyshop') {
+    document.getElementById('s5-bodyshop-view').style.display = 'block';
+    document.getElementById('s5-rep-view').style.display      = 'none';
+    renderStep5Bodyshop();
+    return;
+  }
+  document.getElementById('s5-bodyshop-view').style.display = 'none';
+  document.getElementById('s5-rep-view').style.display      = 'block';
   const r   = engineResults.results;
   const inp = engineResults.inputs_used;
   document.getElementById('export-date').textContent =
@@ -3022,18 +4044,6 @@ function renderStep5() {
 // ══════════════════════════════════════════════
 // EXPORT ACTIONS
 // ══════════════════════════════════════════════
-function generateAndDownloadPDF() {
-  // Fill in name/bodyshop from form if provided
-  const name     = document.getElementById('export-name')?.value || '—';
-  const bodyshop = document.getElementById('export-bodyshop')?.value || '—';
-  const country  = document.getElementById('export-country')?.value || '—';
-  // Temporarily set email field to empty string for generateReport compatibility
-  const emailEl = document.getElementById('export-email');
-  if (emailEl) emailEl.value = emailEl.value || '';
-  // Open the report in a new window — user prints to PDF
-  generateReport();
-}
-
 function submitReport() {
   const name  = document.getElementById('export-name').value;
   const email = document.getElementById('export-email').value;
@@ -3106,11 +4116,11 @@ function generateReport() {
     .page-break { page-break-before:always; }
   }
   .btn-print {
-    display:flex; align-items:center; gap:6px;
+    position:fixed; top:16px; right:16px; z-index:99;
     background:#0078A9; color:white; border:none;
     padding:10px 20px; border-radius:3px; font-size:13px;
     font-weight:700; cursor:pointer; font-family:inherit;
-    margin:16px 32px 0; width:fit-content;
+    display:flex; align-items:center; gap:6px;
   }
   .btn-print:hover { background:#005a82; }
 
@@ -3263,9 +4273,231 @@ function generateReport() {
     padding:12px 32px; border-top:1px solid #e0e0e0;
     background:#fafafa;
   }
+
+/* ═══════════════════════════════════════════════
+   ROLE SELECTOR
+═══════════════════════════════════════════════ */
+.role-selector { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.role-card { background:var(--white); border:2px solid var(--border); border-radius:4px; padding:16px 18px; display:flex; align-items:center; gap:14px; cursor:pointer; transition:border-color .15s, box-shadow .15s; }
+.role-card:hover { border-color:var(--ppg); box-shadow:0 0 0 3px var(--ppg-light); }
+.role-card.selected { border-color:var(--ppg); background:var(--ppg-pale); box-shadow:0 0 0 3px var(--ppg-light); }
+.role-card-icon { font-size:28px; flex-shrink:0; line-height:1; }
+.role-card-body { flex:1; }
+.role-card-title { font-size:14px; font-weight:700; color:var(--ppg-deep); margin-bottom:3px; }
+.role-card-desc  { font-size:12px; color:var(--muted); line-height:1.4; }
+.role-check { width:22px; height:22px; border-radius:50%; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:transparent; flex-shrink:0; transition:all .15s; }
+.role-card.selected .role-check { background:var(--ppg); border-color:var(--ppg); color:white; }
+
+/* ═══════════════════════════════════════════════
+   BODYSHOP STEP 3 — 9-STEP WORKFLOW
+═══════════════════════════════════════════════ */
+.bs-workflow-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:20px; }
+.bs-workflow-card { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:0; box-shadow:var(--shadow); border-top:4px solid var(--ppg); overflow:hidden; transition:box-shadow .15s; }
+.bs-workflow-card:hover { box-shadow:var(--shadow-md); }
+.bs-wf-head { padding:14px 14px 10px; display:flex; align-items:center; gap:10px; }
+.bs-wf-num  { width:24px; height:24px; border-radius:50%; background:var(--ppg); color:white; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.bs-wf-name { font-size:13px; font-weight:700; color:var(--ppg-deep); flex:1; }
+.bs-wf-icon { font-size:18px; }
+.bs-wf-time { padding:0 14px 8px; display:flex; align-items:center; gap:8px; }
+.bs-wf-time-val { font-size:20px; font-weight:700; color:var(--ppg-deep); }
+.bs-wf-time-unit{ font-size:11px; color:var(--muted); }
+.bs-wf-time-range{ font-size:10px; color:var(--muted); background:var(--ppg-pale); padding:2px 6px; border-radius:99px; }
+.bs-wf-bar { height:3px; background:var(--border); margin:0 14px 10px; border-radius:99px; overflow:hidden; }
+.bs-wf-bar-fill { height:100%; border-radius:99px; }
+.bs-wf-modules { padding:0 14px 10px; display:flex; flex-wrap:wrap; gap:4px; }
+.bs-wf-module { font-size:9px; font-weight:700; color:var(--ppg); background:var(--ppg-light); padding:2px 6px; border-radius:2px; }
+.bs-wf-products { border-top:1px solid var(--border); background:var(--ppg-pale); }
+.bs-wf-prod-toggle { width:100%; background:none; border:none; cursor:pointer; font-family:'Source Sans 3',sans-serif; font-size:11px; font-weight:700; color:var(--ppg); padding:8px 14px; text-align:left; display:flex; align-items:center; justify-content:space-between; }
+.bs-wf-prod-list { display:none; padding:4px 14px 10px; }
+.bs-wf-prod-list.open { display:block; }
+.bs-wf-prod-item { font-size:11px; color:var(--text); padding:4px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.bs-wf-prod-item:last-child { border-bottom:none; }
+.bs-wf-prod-brand { font-size:9px; color:var(--ppg); font-weight:700; background:var(--ppg-light); padding:1px 5px; border-radius:2px; flex-shrink:0; }
+.bs-wf-prod-cost  { font-size:11px; font-weight:700; color:var(--ppg); flex-shrink:0; }
+
+/* override indicator */
+.bs-override-badge { font-size:9px; font-weight:700; background:#e8f5e9; color:#2e7d32; padding:1px 5px; border-radius:2px; }
+.bs-bench-badge    { font-size:9px; font-weight:700; background:#fff8e1; color:#f57f17; padding:1px 5px; border-radius:2px; }
+
+/* ═══════════════════════════════════════════════
+   BODYSHOP STEP 4 — SIMPLIFIED RESULTS
+═══════════════════════════════════════════════ */
+.bs-result-hero { background:var(--ppg-deep); border-radius:4px; padding:28px 28px 24px; margin-bottom:20px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; align-items:center; }
+.bs-result-eye { font-size:10px; font-weight:700; color:rgba(255,255,255,.5); text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px; }
+.bs-result-savings { font-size:42px; font-weight:700; color:white; line-height:1; margin-bottom:4px; }
+.bs-result-savings-sub { font-size:13px; color:rgba(255,255,255,.6); }
+.bs-result-stat { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:3px; padding:16px 18px; text-align:center; }
+.bs-result-stat-val { font-size:26px; font-weight:700; color:white; line-height:1; margin-bottom:4px; }
+.bs-result-stat-label { font-size:11px; color:rgba(255,255,255,.55); }
+.bs-insight-cards { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; } /* 5th card spans full width via JS */
+.bs-insight { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:18px; box-shadow:var(--shadow); display:flex; gap:14px; align-items:flex-start; }
+.bs-insight-icon  { font-size:24px; flex-shrink:0; margin-top:2px; }
+.bs-insight-title { font-size:13px; font-weight:700; color:var(--ppg-deep); margin-bottom:4px; }
+.bs-insight-text  { font-size:12px; color:var(--muted); line-height:1.5; }
+.bs-insight-val   { font-size:18px; font-weight:700; color:var(--ppg); margin-top:6px; }
+.bs-cost-breakdown { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:18px; box-shadow:var(--shadow); margin-bottom:20px; }
+.bs-cost-title { font-size:13px; font-weight:700; color:var(--ppg-deep); margin-bottom:14px; }
+.bs-cost-row   { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.bs-cost-dot   { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
+.bs-cost-name  { font-size:12px; color:var(--text); width:160px; flex-shrink:0; }
+.bs-cost-track { flex:1; height:8px; background:var(--border); border-radius:99px; overflow:hidden; }
+.bs-cost-fill  { height:100%; border-radius:99px; }
+.bs-cost-eur   { font-size:12px; font-weight:700; color:var(--ppg-deep); width:44px; text-align:right; }
+
+/* ═══════════════════════════════════════════════
+   BODYSHOP STEP 5 — CTA FORK
+═══════════════════════════════════════════════ */
+.bs-cta-wrap { max-width:680px; margin:0 auto; }
+.bs-summary-bar { background:var(--ppg-deep); color:white; border-radius:3px; padding:16px 20px; display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin-bottom:20px; }
+.bs-sum-item  { text-align:center; }
+.bs-sum-label { font-size:10px; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:.05em; margin-bottom:2px; }
+.bs-sum-val   { font-size:20px; font-weight:700; color:white; }
+.bs-sum-val.green { color:#81c784; }
+.bs-sum-div   { width:1px; height:40px; background:rgba(255,255,255,.15); }
+.bs-cta-cards { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px; }
+.bs-cta-card  { background:var(--white); border:2px solid var(--border); border-radius:4px; padding:24px; display:flex; flex-direction:column; gap:12px; box-shadow:var(--shadow); transition:border-color .15s, box-shadow .15s; }
+.bs-cta-card:hover { border-color:var(--ppg); box-shadow:var(--shadow-md); }
+.bs-cta-card.primary { border-color:var(--ppg); background:var(--ppg-pale); }
+.bs-cta-card-icon  { font-size:32px; line-height:1; }
+.bs-cta-card-title { font-size:16px; font-weight:700; color:var(--ppg-deep); }
+.bs-cta-card-desc  { font-size:12px; color:var(--muted); line-height:1.6; flex:1; }
+.bs-or-divider { display:flex; align-items:center; gap:12px; margin:4px 0; }
+.bs-or-divider::before, .bs-or-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+.bs-or-text { font-size:11px; color:var(--muted); font-weight:600; }
+
+/* ═══════════════════════════════════════════════
+   ADVANCED PER-STEP OVERRIDES
+═══════════════════════════════════════════════ */
+.step-override-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+.step-override-row  { display:flex; flex-direction:column; gap:3px; }
+.step-override-label{ font-size:11px; font-weight:700; color:var(--ppg-deep); display:flex; align-items:center; gap:4px; }
+.step-override-hint { font-size:10px; color:var(--muted); }
+
+/* ═══════════════════════════════════════════════
+   MOBILE & TABLET RESPONSIVE — max-width 768px
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .page-body { padding: 16px 14px 40px; }
+  .step-banner { padding: 16px 16px 14px; }
+  .step-banner-title { font-size: 16px; }
+  .step-progress { display: none; }
+
+  /* KPI rows — stack to 2 cols on mobile */
+  .kpi-row-5, .kpi-row-4, .kpi-row-3 { grid-template-columns: 1fr 1fr; }
+  .kpi-row-2 { grid-template-columns: 1fr; }
+  .kpi-val { font-size: 20px; }
+
+  /* Two-col → single col */
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+  .export-grid  { grid-template-columns: 1fr; }
+
+  /* Stage cards → 1 col */
+  .stage-cards { grid-template-columns: 1fr 1fr; }
+  .bs-workflow-grid { grid-template-columns: 1fr 1fr; }
+  .bs-insight-cards { grid-template-columns: 1fr; }
+  .bs-result-hero   { grid-template-columns: 1fr; gap: 10px; }
+  .bs-cta-cards     { grid-template-columns: 1fr; }
+  .bs-result-savings { font-size: 32px; }
+
+  /* Role selector → stack */
+  .role-selector { grid-template-columns: 1fr; }
+
+  /* Form grid → single col */
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group.full { grid-column: 1; }
+  .step-override-grid { grid-template-columns: 1fr; }
+
+  /* Labour metrics → 2 col */
+  #labour-metrics-box { grid-template-columns: 1fr 1fr !important; }
+
+  /* Step footer — stack */
+  .step-footer { flex-direction: column; gap: 10px; align-items: stretch; }
+  .step-footer .btn { justify-content: center; }
+
+  /* Topbar */
+  .topbar-upper { padding: 0 14px; }
+  .topbar-lower { padding: 0 10px; }
+  .snav-item { padding: 0 12px; font-size: 11px; }
+  .snav-item span:not(.snav-num) { display: none; }
+
+  /* Tables — horizontal scroll */
+  .data-table, .stage-compare-table { font-size: 11px; }
+  .card-body { overflow-x: auto; }
+
+  /* Savings panel */
+  .savings-panel { padding: 16px; }
+  .sp-amt { font-size: 26px; }
+
+  /* Summary bar */
+  .bs-summary-bar { gap: 12px; padding: 12px 14px; }
+  .bs-sum-val { font-size: 16px; }
+  .bs-sum-div { display: none; }
+}
+
+@media (max-width: 480px) {
+  .stage-cards, .bs-workflow-grid { grid-template-columns: 1fr; }
+  .kpi-row-5, .kpi-row-4, .kpi-row-3, .kpi-row-2 { grid-template-columns: 1fr; }
+  .lp-hero { padding: 32px 16px 40px; }
+  .lp-preview { display: none; }
+  .lp-h1 { font-size: 26px; }
+  .lp-features-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ═══════════════════════════════════════════════
+   COMPARISON TABLE — TIME + COST COLUMNS
+═══════════════════════════════════════════════ */
+.sct-time-input {
+  width:100%; max-width:90px;
+  height:34px; padding:0 8px;
+  border:1px solid var(--border); border-radius:3px;
+  font-size:13px; font-family:'Source Sans 3',sans-serif;
+  color:var(--text); background:white;
+  text-align:right; transition:border-color .15s;
+}
+.sct-time-input:focus { outline:none; border-color:var(--ppg); box-shadow:0 0 0 2px var(--ppg-light); }
+.sct-time-saved { font-size:12px; font-weight:700; }
+.sct-time-saved.saving { color:var(--green); }
+.sct-time-saved.neutral { color:var(--muted); }
+
+/* ═══════════════════════════════════════════════
+   BODYSHOP STEP 3 — COST INPUT PER STEP
+═══════════════════════════════════════════════ */
+.bs-step-compare {
+  border-top:1px solid var(--border);
+  padding:10px 14px;
+  background:var(--ppg-pale);
+}
+.bs-step-compare-row {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:6px;
+}
+.bs-step-compare-label { font-size:11px; color:var(--muted); flex:1; }
+.bs-step-compare-val   { font-size:13px; font-weight:700; color:var(--ppg); }
+.bs-step-cost-input {
+  width:90px; height:32px; padding:0 8px;
+  border:1px solid var(--border); border-radius:3px;
+  font-size:12px; font-family:'Source Sans 3',sans-serif;
+  color:var(--text); background:white;
+  text-align:right; transition:border-color .15s;
+}
+.bs-step-cost-input:focus { outline:none; border-color:var(--ppg); box-shadow:0 0 0 2px var(--ppg-light); }
+.bs-step-saving { font-size:11px; font-weight:700; color:var(--green); margin-top:3px; }
+.bs-step-saving.loss { color:var(--red); }
+
+/* Bodyshop step 3 summary bar */
+.bs-compare-summary {
+  background:var(--ppg-deep); color:white;
+  border-radius:3px; padding:14px 18px;
+  display:none; align-items:center; gap:20px;
+  flex-wrap:wrap; margin-top:16px;
+}
+.bs-compare-summary.visible { display:flex; }
 </style>
 </head>
 <body>
+
+<button class="btn-print no-print" onclick="window.print()">🖨 Print / Save as PDF</button>
 
 <!-- HEADER -->
 <div class="report-header">
@@ -3281,7 +4513,6 @@ function generateReport() {
   </div>
 </div>
 <div class="accent-bar"></div>
-<button class="btn-print no-print" onclick="window.print()">🖨 Print / Save as PDF</button>
 
 <!-- META STRIP -->
 <div class="meta-strip">
@@ -3627,34 +4858,18 @@ function renderCatalog() {
   }).join('');
 }
 
-function toggleEMMAdv() {
-  const section = document.getElementById('emm-adv-section');
-  const arrow   = document.getElementById('emm-adv-arrow');
-  const isOpen  = section.style.display !== 'none';
-  section.style.display = isOpen ? 'none' : 'block';
-  arrow.style.transform = isOpen ? '' : 'rotate(90deg)';
-}
-
-function checkEMMFields() {
-  const factor = document.getElementById('improvement_factor')?.value;
-  const cost   = document.getElementById('investment_cost')?.value;
-  const statusOk      = document.getElementById('emm-status');
-  const statusPartial = document.getElementById('emm-status-partial');
-  if (!statusOk || !statusPartial) return;
-  if (factor && cost) {
-    statusOk.style.display = 'block'; statusPartial.style.display = 'none';
-  } else if (factor || cost) {
-    statusOk.style.display = 'none'; statusPartial.style.display = 'block';
-  } else {
-    statusOk.style.display = 'none'; statusPartial.style.display = 'none';
-  }
-}
-
 // ══════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════
+restoreForm();
 showHero();
 document.getElementById('nav-0').addEventListener('click', ()=>goTo(0));
+// Auto-save form inputs on change
+document.addEventListener('input', e => {
+  if (e.target.matches('.form-input, #step_min_inspection, #step_min_cleaning, #step_min_disassembly, #step_min_repair, #step_min_prepzone, #step_min_paint, #step_min_correction, #step_min_assembly, #step_min_supporting')) {
+    saveForm();
+  }
+});
 </script>
 </body>
 </html>
